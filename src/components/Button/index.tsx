@@ -2,11 +2,12 @@ import React, { ReactNode } from 'react'
 
 interface iButtonProps {
     children: ReactNode,
+    typeBtn?: "button" | "submit" 
 }
 
-const Button = ({children}: iButtonProps) => {
+const Button = ({children, typeBtn = "button"}: iButtonProps) => {
   return (
-    <button>{children}</button>
+    <button type={typeBtn}>{children}</button>
   )
 }
 
