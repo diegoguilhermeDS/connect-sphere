@@ -5,12 +5,13 @@ interface IInputProps {
   type: string;
   placeholder: string;
   inputName: string,
+  register: UseFormRegisterReturn 
   pattern?: string,
-  register: UseFormRegisterReturn
+  autoComplete?: string
 }
 
-const Input = ({type, inputName, placeholder, pattern, register}: IInputProps) => {
-  return <input type={type} id={inputName} placeholder={placeholder} pattern={pattern} {...register}/>;
+const Input = ({type, inputName, placeholder, pattern, register, autoComplete}: IInputProps) => {
+  return <input type={type} id={inputName} placeholder={placeholder} pattern={pattern} {...register} autoComplete={autoComplete}/>;
 };
 
 export default Input;

@@ -6,8 +6,8 @@ interface IClientProviderProps {
 }
 
 interface IClientContextProps {
-  login: (loginData: LoginData) => void;
-  register: (clientRegisterData: ClientRegisterData) => void;
+  handleLogin: (loginData: LoginData) => void;
+  handleRegister: (clientRegisterData: ClientRegisterData) => void;
   /* token: string | undefined
   setToken: (value: string) => void */
 }

@@ -22,8 +22,7 @@ export const ClientContext = createContext<IClientContextProps>(
 export const ClientProvider = ({ children }: IClientProviderProps) => {
   const router = useRouter();
 
-  const login = async (loginData: LoginData) => {
-    console.log(loginData);
+  const handleLogin = async (loginData: LoginData) => {
     try {
       const res = await api.post("login/", loginData);
 
@@ -41,9 +40,13 @@ export const ClientProvider = ({ children }: IClientProviderProps) => {
     }
   };
 
-  const register = async (clientRegisterData: ClientRegisterData) => {
+  const handleRegister = async (clientRegisterData: ClientRegisterData) => {
+    const re = /\W+/g;
+    const phone = clientRegisterData.phone.split(re).join("");
+    const data: Partial<ClientRegisterData> = { ...clientRegisterData, phone: phone };
     try {
-      const res = await api.post("clients/", clientRegisterData);
+      delete data["confirmPassword"]
+      const res = await api.post("clients/", data);
       Toast({ message: "Cliente criado com sucesso!", type: true });
       router.push("/");
     } catch (error) {
@@ -54,7 +57,7 @@ export const ClientProvider = ({ children }: IClientProviderProps) => {
   };
 
   return (
-    <ClientContext.Provider value={{ login, register }}>
+    <ClientContext.Provider value={{ handleLogin, handleRegister }}>
       {children}
     </ClientContext.Provider>
   );

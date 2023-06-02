@@ -10,7 +10,7 @@ import React, { ReactNode } from "react";
 import { useForm } from "react-hook-form";
 
 const FormLogin = () => {
-  const { login } = useClient();
+  const { handleLogin } = useClient();
 
   const {
     register,
@@ -21,7 +21,7 @@ const FormLogin = () => {
   });
 
   const handleFormSubmit = (formData: LoginData) => {
-    login(formData);
+    handleLogin(formData);
   };
   return (
     <form
@@ -39,7 +39,7 @@ const FormLogin = () => {
       <Input
         type="password"
         inputName="password"
-        placeholder="Digite sua senha"
+        placeholder="Digite aqui sua senha"
         register={register("password")}
       />
       {errors?.password && <InputError message={errors.password.message!} />}
