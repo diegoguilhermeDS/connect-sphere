@@ -1,14 +1,16 @@
 import React from "react";
+import { UseFormRegisterReturn } from "react-hook-form/dist/types";
 
 interface IInputProps {
   type: string;
   placeholder: string;
-  name: string,
-  pattern?: string 
+  inputName: string,
+  pattern?: string,
+  register: UseFormRegisterReturn
 }
 
-const Input = ({type, name, placeholder, pattern}: IInputProps) => {
-  return <input type={type} name={name} id={name} placeholder={placeholder} pattern={pattern}/>;
+const Input = ({type, inputName, placeholder, pattern, register}: IInputProps) => {
+  return <input type={type} id={inputName} placeholder={placeholder} pattern={pattern} {...register}/>;
 };
 
 export default Input;
