@@ -1,5 +1,3 @@
-"use client";
-
 import { ClientProvider } from "@/providers/ClientContext";
 import "./globals.css";
 import { Inter } from "next/font/google";
