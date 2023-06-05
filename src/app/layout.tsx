@@ -5,6 +5,8 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import Header from "@/components/Header";
+import Modal from "@/components/Modal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,9 +22,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className} suppressHydrationWarning={true}>
         <ToastContainer />
-        <ClientProvider>{children}</ClientProvider>
+        <Header />
+        <ClientProvider>
+          <Modal />
+          {children}
+        </ClientProvider>
       </body>
     </html>
   );
