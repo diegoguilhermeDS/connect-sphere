@@ -28,6 +28,7 @@ const FormLogin = () => {
       onSubmit={handleSubmit(handleFormSubmit)}
       noValidate
       autoComplete="off"
+      className="flex flex-col gap-4"
     >
       <Input
         type="email"
