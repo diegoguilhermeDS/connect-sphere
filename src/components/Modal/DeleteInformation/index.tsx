@@ -2,16 +2,13 @@
 
 import { useClient } from "@/hooks/useClient";
 import { useInformation } from "@/hooks/useInformation";
-import { InforamtionCurrent } from "@/providers/ClientContext.types";
 import React from "react";
 
-interface IDeleteInformationProps {
-  infor: InforamtionCurrent;
-}
 
-const DeleteInformation = ({ infor }: IDeleteInformationProps) => {
+const DeleteInformation = () => {
   const { deleteInformation } = useInformation();
-  const {setOpenModal} = useClient()
+  const { inforCurrent } = useClient();
+  const { setOpenModal } = useClient();
 
   return (
     <div className="flex flex-col gap-5">
@@ -22,8 +19,20 @@ const DeleteInformation = ({ infor }: IDeleteInformationProps) => {
         e removerá seus dados de nossos servidores.
       </p>
       <div className="flex justify-between">
-        <button onClick={() => setOpenModal(false)} className="bg-zinc-200 p-2 rounded shadow shadow-zinc-200 text-gray-700 font-bold">Cancelar</button>
-        <button className="bg-rose-500 p-2 rounded shadow shadow-rose-500 text-white font-bold" onClick={() => deleteInformation(infor.ownerInformation, infor.ownerId, infor.id!)}>Sim, excluir informação</button>
+        <button
+          onClick={() => setOpenModal(false)}
+          className="bg-zinc-200 p-2 rounded shadow shadow-zinc-200 text-gray-700 font-bold"
+        >
+          Cancelar
+        </button>
+        <button
+          className="bg-rose-500 p-2 rounded shadow shadow-rose-500 text-white font-bold"
+          onClick={() =>
+            deleteInformation(inforCurrent.ownerInformation, inforCurrent.ownerId, inforCurrent.id!)
+          }
+        >
+          Sim, excluir informação
+        </button>
       </div>
     </div>
   );

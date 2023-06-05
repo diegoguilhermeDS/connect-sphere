@@ -3,9 +3,10 @@ import AddIcon from "./AddIcon";
 import PenIcon from "./PenIcon";
 import BinIcon from "./BinIcon";
 import CloseIcon from "./CloseIcon";
+import EyesIcon from "./EyesIcon";
 
 interface IIconProps {
-  type: "add" | "delete" | "update" | "close";
+  type: "add" | "delete" | "update" | "close" | "view";
   handle: () => void
 }
 
@@ -16,6 +17,7 @@ const Icon = ({ type, handle }: IIconProps) => {
       {type == "update" && <PenIcon />}
       {type == "delete" && <BinIcon />}
       {type == "close" && <CloseIcon />}
+      {type == "view" && <EyesIcon/>}
     </button>
   );
 };

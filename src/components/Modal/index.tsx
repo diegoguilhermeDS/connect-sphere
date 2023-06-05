@@ -8,6 +8,7 @@ import DeleteInformation from "./DeleteInformation";
 import { InforamtionCurrent } from "@/providers/ClientContext.types";
 import DeleteClient from "./DeleteClient";
 import UpdateClient from "./Forms/UpdateClient";
+import DetailContact from "./DetailContact";
 
 const Modal = () => {
   const {
@@ -15,9 +16,7 @@ const Modal = () => {
     setOpenModal,
     typeModal,
     setTypeModal,
-    inforCurrent,
     setInforCurrent,
-    clientCurrent
   } = useClient();
 
   return (
@@ -37,20 +36,12 @@ const Modal = () => {
             </div>
             <h1>Modal Aberto</h1>
             <span>modal do tipo {typeModal}</span>
-            {typeModal == "addInformation" ||
-            typeModal == "updateInformation" ? (
-              <FormAddOrUpdateInformation
-                type={typeModal}
-                infor={inforCurrent}
-              />
-            ) : (
-              <></>
-            )}
-            {typeModal == "deleteInformation" && (
-              <DeleteInformation infor={inforCurrent} />
-            )}
-            {typeModal == "deleteClient" && <DeleteClient/>}
-            {typeModal == "updateClient" && <UpdateClient/>}
+            {typeModal == "addInformation" && <FormAddOrUpdateInformation />}
+            {typeModal == "updateInformation" && <FormAddOrUpdateInformation />}
+            {typeModal == "deleteInformation" && <DeleteInformation />}
+            {typeModal == "deleteClient" && <DeleteClient />}
+            {typeModal == "updateClient" && <UpdateClient />}
+            {typeModal == "viewDetailsContact" && <DetailContact />}
           </div>
         </div>
       )}

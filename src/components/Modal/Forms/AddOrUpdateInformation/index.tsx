@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import InputError from "@/components/Input/InputError";
-import { InforamtionCurrent } from "@/providers/ClientContext.types";
 import {
   InformationData,
   informationSchema,
@@ -11,16 +10,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import MaskedInput from "react-input-mask";
 import { useInformation } from "@/hooks/useInformation";
+import { useClient } from "@/hooks/useClient";
 
-interface IFormProps {
-  type: string;
-  infor?: InforamtionCurrent;
-}
-
-const FormAddOrUpdateInformation = ({ type, infor }: IFormProps) => {
+const FormAddOrUpdateInformation = () => {
   const { addInformation, updateInformation } = useInformation();
-  const [emailValue, setEmailValue] = useState(infor?.email);
-  const [phoneValue, setPhoneValue] = useState(infor?.phone);
+  const { inforCurrent, typeModal } = useClient();
+  const [emailValue, setEmailValue] = useState(inforCurrent?.email);
+  const [phoneValue, setPhoneValue] = useState(inforCurrent?.phone);
 
   const {
     register,
@@ -31,16 +27,16 @@ const FormAddOrUpdateInformation = ({ type, infor }: IFormProps) => {
   });
 
   const handleAddInformation = (data: InformationData) => {
-    addInformation(data, infor!.ownerInformation, infor!.ownerId);
+    addInformation(data, inforCurrent!.ownerInformation, inforCurrent!.ownerId);
   };
 
   const handleUpdateInformation = (data: InformationData) => {
     updateInformation(
       data,
-      infor!.ownerInformation,
-      infor!.ownerId,
-      infor!.id!,
-      infor!
+      inforCurrent!.ownerInformation,
+      inforCurrent!.ownerId,
+      inforCurrent!.id!,
+      inforCurrent!
     );
   };
 
@@ -48,7 +44,7 @@ const FormAddOrUpdateInformation = ({ type, infor }: IFormProps) => {
     <form
       className="flex flex-col gap-5"
       onSubmit={
-        type == "addInformation"
+        typeModal == "addInformation"
           ? handleSubmit(handleAddInformation)
           : handleSubmit(handleUpdateInformation)
       }

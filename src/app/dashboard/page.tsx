@@ -5,6 +5,7 @@ import { AuthenticatedClient } from "@/providers/ClientContext.types";
 import LisntInformation from "@/components/Information";
 import Icon from "@/components/Icons";
 import ClientCard from "@/components/ClientCard";
+import ContactCard from "@/components/ContactCard";
 
 async function getClient() {
   const clientId = cookies().get("client.id")?.value;
@@ -35,11 +36,13 @@ export default async function DashboardPage() {
         <ClientCard authClient={authClient}/>
         <LisntInformation information={authClient.information} ownerId={authClient.id} ownerInformation="clients"/>        
       </section>
-      <ul>
-        {authClient.contacts.map((contact, index) => (
-          <li key={index}>{contact.name}</li>
-        ))}
-      </ul>
+      <section>
+        <ul className="grid grid-cols-3 gap-5 w-full">
+          {authClient.contacts.map((contact, index) => (
+            <ContactCard contact={contact} key={index}/>
+          ))}
+        </ul>
+      </section>
     </main>
   );
 }

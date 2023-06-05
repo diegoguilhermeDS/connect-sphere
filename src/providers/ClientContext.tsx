@@ -3,6 +3,7 @@
 import { createContext, useState } from "react";
 import {
   AuthenticatedClient,
+  Contact,
   IClientContextProps,
   IClientProviderProps,
   IErrorData,
@@ -25,6 +26,7 @@ export const ClientContext = createContext<IClientContextProps>(
 
 export const ClientProvider = ({ children }: IClientProviderProps) => {
   const router = useRouter();
+
   const [openModal, setOpenModal] = useState(false);
   const [typeModal, setTypeModal] = useState<string>("");
   const [inforCurrent, setInforCurrent] = useState<InforamtionCurrent>(
@@ -33,6 +35,7 @@ export const ClientProvider = ({ children }: IClientProviderProps) => {
   const [clientCurrent, setClientCurrent] = useState<AuthenticatedClient>(
     {} as AuthenticatedClient
   );
+  const [contactCurrent, setContactCurrent] = useState<Contact>({} as Contact)
 
   const token = parseCookies();
   if (token["client.token"]) {
@@ -126,6 +129,8 @@ export const ClientProvider = ({ children }: IClientProviderProps) => {
       value={{
         handleLogin,
         handleRegister,
+        handleRemoveClientOrContact,
+        handleUpdateClient,
         openModal,
         setOpenModal,
         typeModal,
@@ -134,8 +139,8 @@ export const ClientProvider = ({ children }: IClientProviderProps) => {
         setInforCurrent,
         clientCurrent,
         setClientCurrent,
-        handleRemoveClientOrContact,
-        handleUpdateClient
+        contactCurrent,
+        setContactCurrent
       }}
     >
       <InformationProvider setOpenModal={setOpenModal}>

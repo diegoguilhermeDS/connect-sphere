@@ -21,6 +21,8 @@ interface IClientContextProps {
   setInforCurrent: Dispatch<SetStateAction<InforamtionCurrent>>;
   clientCurrent: AuthenticatedClient;
   setClientCurrent: Dispatch<SetStateAction<AuthenticatedClient>>;
+  contactCurrent: Contact,
+  setContactCurrent: Dispatch<SetStateAction<Contact>>
 }
 
 interface IErrorData {
@@ -72,4 +74,5 @@ export type {
   AuthenticatedClient,
   Information,
   InforamtionCurrent,
+  Contact
 };
