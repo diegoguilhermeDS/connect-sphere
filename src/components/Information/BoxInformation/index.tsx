@@ -5,13 +5,13 @@ import { useClient } from "@/hooks/useClient";
 import { Information } from "@/providers/ClientContext.types";
 import React from "react";
 
-interface IBoxInformationProps {
+interface iBoxInformationProps {
   infor: Information
   ownerId: string
   ownerInformation: "clients" | "contacts"
 }
 
-const BoxInformation = ({ infor, ownerId, ownerInformation }: IBoxInformationProps) => {
+const BoxInformation = ({ infor, ownerId, ownerInformation }: iBoxInformationProps) => {
   const { setOpenModal, setTypeModal, setInforCurrent } = useClient();
 
   const data = {...infor, ownerId: ownerId, ownerInformation: ownerInformation}

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useClient } from "@/hooks/useClient";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,15 +8,17 @@ import { LoginData, loginSchema } from "@/schemas/client.schema";
 
 import Button from "@/components/Button";
 import Input from "@/components/Input";
-import InputError from "@/components/Input/InputError";
+import ViewPassword from "@/components/ViewPassword";
 
 const FormLogin = () => {
   const { handleLogin } = useClient();
 
+  const [viewPassword, setViewPassword] = useState("password" as "text" | "email" | "password" | "phone");
+
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isDirty, isValid },
   } = useForm<LoginData>({
     resolver: zodResolver(loginSchema),
   });
@@ -38,15 +40,18 @@ const FormLogin = () => {
         error={errors?.email && errors.email.message!}
         register={register("email")}
       />
-      <Input
-        type="password"
-        label="Senha"
-        error={errors?.password && errors.password.message!}
-        placeholder="Digite aqui sua senha"
-        register={register("password")}
-      />
+      <div className="relative">
+        <Input
+          type={viewPassword}
+          label="Senha"
+          error={errors?.password && errors.password.message!}
+          placeholder="Digite aqui sua senha"
+          register={register("password")}
+        />
+        <ViewPassword type={viewPassword} handle={() => (viewPassword == "password" ? setViewPassword("text") : setViewPassword("password"))}/>
+      </div>
       <h6 className="h7 text-sky-800 text-end mb-4 cursor-pointer">Esqueceu sua senha?</h6>
-      <Button type={"brand"} submit>Entrar</Button>
+      <Button type={!isDirty || !isValid ? "disableBrand" : "brand"} submit disable={!isDirty || !isValid}>Entrar</Button>
     </form>
   );
 };
