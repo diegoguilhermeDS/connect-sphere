@@ -2,12 +2,12 @@
 
 import { useEffect } from "react";
 
-interface IErrorProps {
+interface iErrorProps {
   error: Error;
   reset: () => void;
 }
 
-export default function Error({ error, reset }: IErrorProps) {
+export default function Error({ error, reset }: iErrorProps) {
   useEffect(() => {
     console.error("ese erro aqui", error);
   }, [error]);

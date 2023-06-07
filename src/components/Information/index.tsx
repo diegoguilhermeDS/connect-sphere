@@ -6,7 +6,7 @@ import { useClient } from "@/hooks/useClient";
 import BoxInformation from "./BoxInformation";
 import { Information } from "@/providers/ClientContext.types";
 
-interface IListInformationProps {
+interface iListInformationProps {
   information: Information[];
   ownerId: string;
   ownerInformation: "clients" | "contacts";
@@ -16,7 +16,7 @@ const LisntInformation = ({
   information,
   ownerId,
   ownerInformation,
-}: IListInformationProps) => {
+}: iListInformationProps) => {
   const { setOpenModal, setTypeModal, setInforCurrent } = useClient();
 
   return (

@@ -12,7 +12,7 @@ interface iInputProps {
 
 const Input = ({ type, label, placeholder, register, error }: iInputProps) => {
   const maskedTypes = ["phone"];
-  const masked = { phone: "(999) 99999-9999" };
+  const masked = { phone: "(99) 99999-9999" };
 
   return (
     <fieldset className="relative flex flex-col gap-2">
