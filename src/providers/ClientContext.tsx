@@ -4,9 +4,9 @@ import { createContext, useState } from "react";
 import {
   AuthenticatedClient,
   Contact,
-  IClientContextProps,
-  IClientProviderProps,
-  IErrorData,
+  iClientContextProps,
+  iClientProviderProps,
+  iErrorData,
   InforamtionCurrent,
   tokenDecode,
 } from "./ClientContext.types";
@@ -20,11 +20,11 @@ import jwtDecode from "jwt-decode";
 import { InformationProvider } from "./InformationContext";
 import { toast } from "react-toastify";
 
-export const ClientContext = createContext<IClientContextProps>(
-  {} as IClientContextProps
+export const ClientContext = createContext<iClientContextProps>(
+  {} as iClientContextProps
 );
 
-export const ClientProvider = ({ children }: IClientProviderProps) => {
+export const ClientProvider = ({ children }: iClientProviderProps) => {
   const router = useRouter();
 
   const [openModal, setOpenModal] = useState(false);
@@ -69,7 +69,7 @@ export const ClientProvider = ({ children }: IClientProviderProps) => {
 
       router.push("/dashboard");
     } catch (error) {
-      const err = error as AxiosError<IErrorData>;
+      const err = error as AxiosError<iErrorData>;
       console.log(err);
 
       const msg = "E-mail ou Senha inválido";
@@ -93,7 +93,7 @@ export const ClientProvider = ({ children }: IClientProviderProps) => {
       Toast({ message: "Cliente criado com sucesso!", type: "success" });
       router.push("/");
     } catch (error) {
-      const err = error as AxiosError<IErrorData>;
+      const err = error as AxiosError<iErrorData>;
       console.log(err);
       const msg = "E-mail ou Telefone já existe";
       Toast({

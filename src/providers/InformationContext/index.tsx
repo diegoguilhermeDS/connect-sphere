@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext } from "react";
-import { IInformationContextProps, IInformationProviderProps } from "./types";
+import { iInformationContextProps, iInformationProviderProps } from "./types";
 import { InformationData } from "@/schemas/infromation.schema";
 import { api } from "@/services/api";
 import Toast from "@/components/Toast";
@@ -9,14 +9,14 @@ import { useRouter } from "next/navigation";
 import { AxiosError } from "axios";
 import { InforamtionCurrent } from "../ClientContext.types";
 
-export const InformationContext = createContext<IInformationContextProps>(
-  {} as IInformationContextProps
+export const InformationContext = createContext<iInformationContextProps>(
+  {} as iInformationContextProps
 );
 
 export const InformationProvider = ({
   children,
   setOpenModal,
-}: IInformationProviderProps) => {
+}: iInformationProviderProps) => {
   const router = useRouter();
 
   const addInformation = async (

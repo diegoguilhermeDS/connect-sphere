@@ -51,7 +51,7 @@ const UpdateClient = () => {
         value={nameValue}
         onChange={(e) => setNameValue(e.target.value)}
       />
-      <Input
+      {/* <Input
         type="password"
         inputName="password"
         placeholder="Digite aqui sua nova senha"
@@ -62,7 +62,7 @@ const UpdateClient = () => {
         inputName="confirm"
         placeholder="Digite novamente sua nova senha"
         register={register("confirmPassword")}
-      />
+      /> */}
       <button type="submit">Enviar</button>
     </form>
   );
