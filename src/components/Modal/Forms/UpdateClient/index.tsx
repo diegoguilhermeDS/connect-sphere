@@ -1,5 +1,4 @@
 import Input from "@/components/Input";
-import InputError from "@/components/Input/InputError";
 import Toast from "@/components/Toast";
 import { useClient } from "@/hooks/useClient";
 import { ClientUpdateData, clientUpdateSchema } from "@/schemas/client.schema";
@@ -52,23 +51,18 @@ const UpdateClient = () => {
         value={nameValue}
         onChange={(e) => setNameValue(e.target.value)}
       />
-      {errors?.name && <InputError message={errors.name.message!} />}
       <Input
         type="password"
         inputName="password"
         placeholder="Digite aqui sua nova senha"
         register={register("password")}
       />
-      {errors?.password && <InputError message={errors.password.message!} />}
       <Input
         type="password"
         inputName="confirm"
         placeholder="Digite novamente sua nova senha"
         register={register("confirmPassword")}
       />
-      {errors?.confirmPassword && (
-        <InputError message={errors.confirmPassword.message!} />
-      )}
       <button type="submit">Enviar</button>
     </form>
   );

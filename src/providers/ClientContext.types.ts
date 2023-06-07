@@ -1,11 +1,11 @@
 import { ClientRegisterData, ClientUpdateData, LoginData } from "@/schemas/client.schema";
 import { Dispatch, ReactNode, SetStateAction } from "react";
 
-interface IClientProviderProps {
+interface iClientProviderProps {
   children: ReactNode;
 }
 
-interface IClientContextProps {
+interface iClientContextProps {
   handleLogin: (loginData: LoginData) => void;
   handleRegister: (clientRegisterData: ClientRegisterData) => void;
   handleRemoveClientOrContact: (
@@ -25,7 +25,7 @@ interface IClientContextProps {
   setContactCurrent: Dispatch<SetStateAction<Contact>>
 }
 
-interface IErrorData {
+interface iErrorData {
   statusCode: number;
   message: string;
   error: string;
@@ -67,9 +67,9 @@ interface InforamtionCurrent extends Partial<Information> {
 }
 
 export type {
-  IClientProviderProps,
-  IClientContextProps,
-  IErrorData,
+  iClientProviderProps,
+  iClientContextProps,
+  iErrorData,
   tokenDecode,
   AuthenticatedClient,
   Information,

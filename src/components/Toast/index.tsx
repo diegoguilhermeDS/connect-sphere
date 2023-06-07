@@ -1,12 +1,12 @@
 import React from "react";
 import { toast } from "react-toastify";
 
-interface IToastProps {
+interface iToastProps {
   message: string;
   type?: "success" | "logout" | "error";
 }
 
-const Toast = ({ message, type = "error" }: IToastProps) => {
+const Toast = ({ message, type = "error" }: iToastProps) => {
   if (type == "success") {
     return toast.success(message, {
       position: "top-right",

@@ -5,11 +5,11 @@ import React from "react";
 import Icon from "../Icons";
 import { useClient } from "@/hooks/useClient";
 
-interface IContactCardProps {
+interface iContactCardProps {
   contact: Contact;
 }
 
-const ContactCard = ({ contact }: IContactCardProps) => {
+const ContactCard = ({ contact }: iContactCardProps) => {
 
   const { setOpenModal, setTypeModal, setContactCurrent } = useClient()
 

@@ -19,13 +19,13 @@ const Header = () => {
   }
 
   return (
-    <header className="shadow-md">
-      <div className="container flex justify-between items-center h-20">
-          <h1>Connect Sphere</h1>
+    <header className="shadow-md bg-gray-50">
+      <div className="container mx-auto flex justify-between items-center h-20">
+          <h6 className="font-semibold md:text-2xl text-sky-800">Connect Sphere</h6>
           <nav>
-            {pathName == "/" && <Link href={"/register"}>Cadastra</Link>}
-            {pathName == "/register" && <Link href={"/"}>Voltar</Link>}
-            {pathName == "/dashboard" && <Button handle={handleLogout}>logout</Button>}
+            {pathName == "/" && <Button type="outline" href="/register" size={2}>Cadastrar</Button>}
+            {pathName == "/register" && <Button type="outline" href="/" size={2}>Voltar</Button>}
+            {pathName == "/dashboard" && <Button type="edit" handle={handleLogout}>logout</Button>}
           </nav>
       </div>
     </header>

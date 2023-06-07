@@ -2,12 +2,12 @@ import { InformationData } from "@/schemas/infromation.schema";
 import { Dispatch, ReactNode, SetStateAction } from "react";
 import { InforamtionCurrent } from "../ClientContext.types";
 
-interface IInformationProviderProps {
+interface iInformationProviderProps {
   children: ReactNode;
   setOpenModal: Dispatch<SetStateAction<boolean>>
 }
 
-interface IInformationContextProps {
+interface iInformationContextProps {
   addInformation: (
     inforData: InformationData,
     endPoint: "clients" | "contacts",
@@ -27,4 +27,4 @@ interface IInformationContextProps {
   ) => void;
 }
 
-export type { IInformationContextProps, IInformationProviderProps };
+export type { iInformationContextProps, iInformationProviderProps };

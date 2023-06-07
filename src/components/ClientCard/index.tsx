@@ -5,11 +5,11 @@ import Icon from "../Icons";
 import { AuthenticatedClient } from "@/providers/ClientContext.types";
 import { useClient } from "@/hooks/useClient";
 
-interface IClientCardProps {
+interface iClientCardProps {
   authClient: AuthenticatedClient;
 }
 
-const ClientCard = ({ authClient }: IClientCardProps) => {
+const ClientCard = ({ authClient }: iClientCardProps) => {
   const { setOpenModal, setTypeModal, setClientCurrent } = useClient();
 
   return (

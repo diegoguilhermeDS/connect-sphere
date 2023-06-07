@@ -18,7 +18,7 @@ import Toast from "@/components/Toast";
 import { AxiosError } from "axios";
 import jwtDecode from "jwt-decode";
 import { InformationProvider } from "./InformationContext";
-import { data } from "autoprefixer";
+import { toast } from "react-toastify";
 
 export const ClientContext = createContext<IClientContextProps>(
   {} as IClientContextProps
@@ -56,7 +56,16 @@ export const ClientProvider = ({ children }: IClientProviderProps) => {
       });
 
       api.defaults.headers.common.Authorization = `Bearer ${res.data.token}`;
-      Toast({ message: "Login efetuado com sucesso", type: "success" });
+      toast("testando toastify",{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
 
       router.push("/dashboard");
     } catch (error) {

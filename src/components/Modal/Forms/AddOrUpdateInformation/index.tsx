@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import InputError from "@/components/Input/InputError";
 import {
   InformationData,
   informationSchema,
@@ -57,7 +56,6 @@ const FormAddOrUpdateInformation = () => {
         onChange={(e) => setEmailValue(e.target.value)}
         value={emailValue}
       />
-      {errors?.email && <InputError message={errors.email.message!} />}
       <MaskedInput
         mask={"(99) 99999-9999"}
         placeholder="Ex: (xx) 9xxxx-xxxx"
@@ -65,7 +63,6 @@ const FormAddOrUpdateInformation = () => {
         onChange={(e) => setPhoneValue(e.target.value)}
         value={phoneValue}
       />
-      {errors?.phone && <InputError message={errors.phone.message!} />}
       <button type="submit">Enviar</button>
     </form>
   );
