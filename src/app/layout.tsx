@@ -35,7 +35,7 @@ export default function RootLayout({
           theme="light"
         />
         <ClientProvider>
-          <Modal />
+          {/* <Modal /> */}
           {children}
         </ClientProvider>
         <ToastContainer />
