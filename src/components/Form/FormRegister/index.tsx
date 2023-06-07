@@ -55,7 +55,7 @@ const FormRegister = () => {
       {errors?.confirmPassword && <InputError message={errors.confirmPassword.message!} />}
       <MaskedInput mask={"(99) 99999-9999"} placeholder="Ex: (xx) 9xxxx-xxxx" {...register("phone")}/>
       {errors?.phone && <InputError message={errors.phone.message!} />}
-      <Button typeBtn="submit">Cadastrar</Button>
+      <Button type="brand" submit>Criar a conta</Button>
     </form>
   );
 };

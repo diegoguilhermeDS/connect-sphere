@@ -2,26 +2,95 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+body,
+html {
+  width: 100vw;
+  height: 100vh;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: "#030712";
+  -webkit-font-smoothing: antialiased;
+
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+  font-weight: 500;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+@layer base {
+  h1 {
+    @apply  font-bold text-5xl;
+  }
+  h2 {
+    @apply  font-semibold text-4xl;
+  }
+  h3 {
+    @apply  font-semibold text-3xl;
+  }
+  h4 {
+    @apply  font-semibold text-2xl;
+  }
+  h5 {
+    @apply  font-semibold text-xl;
+  }
+  h6 {
+    @apply  font-semibold text-lg;
+  }
+  .h7 {
+    @apply  font-semibold text-base;
+  }
+  p {
+    @apply font-normal text-base;
+  }
+  span {
+    @apply font-normal text-sm;
+  }
+  .input-placeholder {
+    @apply font-normal text-base;
+  }
+  .input-label {
+    @apply font-medium text-sm;
+  }
+}
+
+@layer components {
+  .card-contact {
+    @apply flex justify-between items-center h-36 w-full px-2 bg-gray-50 rounded;
+  }
+  .card-client {
+    @apply flex justify-between items-center max-w-[23.125rem] w-[21.4375rem] h-36 md:h-40 px-5 rounded-md bg-white overflow-hidden;
+  }
+  .container-form {
+    @apply flex max-h-fit w-full px-3 py-7 bg-white border-2 border-sky-600 md:border-none rounded-r-md;
+  }
+  .button-base {
+    @apply flex justify-center items-center w-full min-w-fit rounded border-2 font-semibold;
+  }
+  .input-base {
+    @apply w-full h-[3rem] bg-[#f6f6f6] hover:bg-gray-200 px-4 border-2 border-gray-200 hover:border-gray-200 rounded outline-none focus:border-sky-600 focus:text-sky-600 focus:bg-gray-50;
+  }
 }
