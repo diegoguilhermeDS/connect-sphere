@@ -65,7 +65,7 @@ const Header = () => {
             </Button>
           )}
           {pathName == "/dashboard" && (
-            <Button type="edit" handle={handleLogout}>
+            <Button type="edit" handle={handleLogout} size={2}>
               logout
             </Button>
           )}

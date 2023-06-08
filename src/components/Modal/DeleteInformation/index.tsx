@@ -1,14 +1,13 @@
 "use client";
 
-import { useClient } from "@/hooks/useClient";
+import { useAuth } from "@/hooks/useAuth";
 import { useInformation } from "@/hooks/useInformation";
 import React from "react";
 
-
 const DeleteInformation = () => {
   const { deleteInformation } = useInformation();
-  const { inforCurrent } = useClient();
-  const { setOpenModal } = useClient();
+  const { inforCurrent } = useAuth();
+  const { setOpenModal } = useAuth();
 
   return (
     <div className="flex flex-col gap-5">
@@ -28,7 +27,11 @@ const DeleteInformation = () => {
         <button
           className="bg-rose-500 p-2 rounded shadow shadow-rose-500 text-white font-bold"
           onClick={() =>
-            deleteInformation(inforCurrent.ownerInformation, inforCurrent.ownerId, inforCurrent.id!)
+            deleteInformation(
+              inforCurrent.ownerInformation,
+              inforCurrent.ownerId,
+              inforCurrent.id!
+            )
           }
         >
           Sim, excluir informação

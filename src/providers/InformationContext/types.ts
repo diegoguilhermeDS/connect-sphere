@@ -1,10 +1,10 @@
 import { InformationData } from "@/schemas/infromation.schema";
 import { Dispatch, ReactNode, SetStateAction } from "react";
-import { InforamtionCurrent } from "../ClientContext.types";
+import { InforamtionCurrent } from "../AuthContext.types";
 
 interface iInformationProviderProps {
   children: ReactNode;
-  setOpenModal: Dispatch<SetStateAction<boolean>>
+  setOpenModal: Dispatch<SetStateAction<boolean>>;
 }
 
 interface iInformationContextProps {

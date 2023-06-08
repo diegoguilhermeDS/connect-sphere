@@ -17,7 +17,7 @@ interface iButtonProps {
     | "disable";
   disable?: boolean;
   submit?: boolean;
-  href?: string
+  href?: string;
 }
 
 const Button = ({

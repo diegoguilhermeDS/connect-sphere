@@ -1,4 +1,4 @@
-import { ClientProvider } from "@/providers/ClientContext";
+import { ClientProvider } from "@/providers/AuthContext";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Header from "@/components/Header";
@@ -20,7 +20,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-gray-100 scrollbar scrollbar-w-2 scrollbar-thumb-rounded-md scrollbar-thumb-sky-800 scrollbar-track-sky-600`} suppressHydrationWarning={true}>
+      <body
+        className={`${inter.className} bg-gray-100 scrollbar scrollbar-w-2 scrollbar-thumb-rounded-md scrollbar-thumb-sky-800 scrollbar-track-sky-600`}
+        suppressHydrationWarning={true}
+      >
         <Header />
         <ToastContainer
           position="top-right"
@@ -34,9 +37,7 @@ export default function RootLayout({
           pauseOnHover
           theme="light"
         />
-        <ClientProvider>
-          {children}
-        </ClientProvider>
+        <ClientProvider>{children}</ClientProvider>
       </body>
     </html>
   );

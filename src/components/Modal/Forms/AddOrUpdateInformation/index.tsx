@@ -9,11 +9,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import MaskedInput from "react-input-mask";
 import { useInformation } from "@/hooks/useInformation";
-import { useClient } from "@/hooks/useClient";
+import { useAuth } from "@/hooks/useAuth";
 
 const FormAddOrUpdateInformation = () => {
   const { addInformation, updateInformation } = useInformation();
-  const { inforCurrent, typeModal } = useClient();
+  const { inforCurrent, typeModal } = useAuth();
   const [emailValue, setEmailValue] = useState(inforCurrent?.email);
   const [phoneValue, setPhoneValue] = useState(inforCurrent?.phone);
 

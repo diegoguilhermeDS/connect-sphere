@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useClient } from "@/hooks/useClient";
+import { useAuth } from "@/hooks/useAuth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   ClientRegisterData,
@@ -12,9 +12,10 @@ import Input from "@/components/Input";
 import Button from "@/components/Button";
 import InputCheckbox from "@/components/Input/InputCheckbox";
 import ViewPassword from "@/components/ViewPassword";
+import { RiLoader4Line } from "react-icons/ri";
 
 const FormRegister = () => {
-  const { handleRegister } = useClient();
+  const { handleRegister, loadBtn } = useAuth();
 
   const {
     register,
@@ -25,8 +26,12 @@ const FormRegister = () => {
   });
 
   const [disableBtn, setDisableBtn] = useState(true);
-  const [viewPassword, setViewPassword] = useState("password" as "text" | "email" | "password" | "phone");
-  const [viewConfirmPassword, setViewConfirmPassword] = useState("password" as "text" | "email" | "password" | "phone");
+  const [viewPassword, setViewPassword] = useState(
+    "password" as "text" | "email" | "password" | "phone"
+  );
+  const [viewConfirmPassword, setViewConfirmPassword] = useState(
+    "password" as "text" | "email" | "password" | "phone"
+  );
 
   return (
     <form
@@ -55,7 +60,14 @@ const FormRegister = () => {
           register={register("password")}
           error={errors?.password && errors.password.message!}
         />
-        <ViewPassword type={viewPassword} handle={() => (viewPassword == "password" ? setViewPassword("text") : setViewPassword("password"))}/>
+        <ViewPassword
+          type={viewPassword}
+          handle={() =>
+            viewPassword == "password"
+              ? setViewPassword("text")
+              : setViewPassword("password")
+          }
+        />
       </div>
       <div className="relative">
         <Input
@@ -65,7 +77,14 @@ const FormRegister = () => {
           register={register("confirmPassword")}
           error={errors?.confirmPassword && errors.confirmPassword.message!}
         />
-        <ViewPassword type={viewConfirmPassword} handle={() => (viewConfirmPassword == "password" ? setViewConfirmPassword("text") : setViewConfirmPassword("password"))}/>
+        <ViewPassword
+          type={viewConfirmPassword}
+          handle={() =>
+            viewConfirmPassword == "password"
+              ? setViewConfirmPassword("text")
+              : setViewConfirmPassword("password")
+          }
+        />
       </div>
       <Input
         type="phone"
@@ -75,11 +94,17 @@ const FormRegister = () => {
         error={errors?.phone && errors.phone.message!}
       />
       <div className="flex items-start">
-        <InputCheckbox handle={() => setDisableBtn(!disableBtn)}/>
-        <p className="text-sm">concordo com os termos e condições e política de privacidade</p>
+        <InputCheckbox handle={() => setDisableBtn(!disableBtn)} />
+        <p className="text-sm">
+          concordo com os termos e condições e política de privacidade
+        </p>
       </div>
-      <Button type={disableBtn ? "disableBrand" : "brand"} submit disable={disableBtn}>
-        Criar a conta
+      <Button
+        type={disableBtn ? "disableBrand" : "brand"}
+        submit
+        disable={disableBtn}
+      >
+        {!loadBtn ? "Criar a conta" : <RiLoader4Line size={30} color="#fff" className="animate-spin"/>}
       </Button>
     </form>
   );

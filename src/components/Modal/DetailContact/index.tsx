@@ -1,22 +1,19 @@
-import Icon from '@/components/Icons'
-import { useClient } from '@/hooks/useClient'
-import React from 'react'
+import { useAuth } from "@/hooks/useAuth";
+import React from "react";
 
 const DetailContact = () => {
-
-  const {contactCurrent, setOpenModal, setTypeModal} = useClient()
+  const { contactCurrent, setOpenModal, setTypeModal } = useAuth();
 
   return (
     <div>
       <div>
-      <h2>{contactCurrent.name}</h2>
-      <div className="flex gap-2">
-        <Icon type="update" handle={() => (setOpenModal(true), setTypeModal("updateContact"))} />
-        <Icon type="delete" handle={() => (setOpenModal(true), setTypeModal("deleteContact"))} />
+        <h2>{contactCurrent.name}</h2>
+        <div className="flex gap-2">
+
+        </div>
       </div>
     </div>
-    </div>
-  )
-}
+  );
+};
 
-export default DetailContact
+export default DetailContact;
