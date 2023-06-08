@@ -158,7 +158,7 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
         setLoadBtn
       }}
     >
-      <InformationProvider setOpenModal={setOpenModal}>
+      <InformationProvider>
         {children}
       </InformationProvider>
     </ClientContext.Provider>
