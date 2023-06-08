@@ -7,12 +7,12 @@ import bgLogin from "../../public/bg-login.png";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-3 mt-20">
-      <section className="flex md:w-[970px]">
+    <main className="container-main">
+      <section className="flex lg:w-[970px] rounded-md shadow-lg overflow-hidden">
         <Image
           src={bgLogin}
           alt="iamge ilustrations login"
-          className="hidden md:block"
+          className="hidden lg:block"
         />
         <div className="flex justify-center items-center container-form">
           <div className="md:w-[315px] flex flex-col gap-7">
