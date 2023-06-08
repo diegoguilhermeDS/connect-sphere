@@ -11,7 +11,7 @@ const Header = () => {
   const pathName = usePathname();
   const router = useRouter();
 
-  const [openMenu, setOpenMenu] = useState(false);
+  const [openMenu, setOpenMenu] = useState("");
 
   const handleLogout = () => {
     destroyCookie(null, "client.token");
@@ -23,7 +23,7 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 z-40 lg:static w-full shadow-md bg-gray-50 px-2 ${
-        openMenu ? "h-40" : "h-20"
+        openMenu == "open" ? "h-40" : "h-20"
       } lg:h-20 transition-all ease-in-out duration-500`}
     >
       <div className="relative container mx-auto flex justify-between items-center h-20">
@@ -32,9 +32,9 @@ const Header = () => {
         </h6>
         <button
           className="flex justify-center items-center lg:hidden w-10 h-10"
-          onClick={() => setOpenMenu(!openMenu)}
+          onClick={() => setOpenMenu(openMenu == "open" ? "close" : "open")}
         >
-          {!openMenu ? (
+          {openMenu == "open" || openMenu == "" ? (
             <RiMenuFill
               size={30}
               color="#075985"
@@ -49,9 +49,10 @@ const Header = () => {
           )}
         </button>
         <nav
-          className={`absolute right-0 translate-y-0 ${
-            openMenu ? "animate-slide_in_top" : "animate-slide_out_top"
-          } lg:static lg:animate-none`}
+          className={`absolute right-0 -top-full ${
+            openMenu == "open" && "animate-slide_in_top"
+          }  ${openMenu == "close" && "animate-slide_out_top"} 
+          lg:static lg:animate-none`}
         >
           {pathName == "/" && (
             <Button type="outline" href="/register" size={2}>
