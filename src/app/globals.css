@@ -41,6 +41,8 @@ a {
   text-decoration: none;
 }
 
+
+
 @layer base {
   h1 {
     @apply  font-bold text-5xl;
@@ -78,6 +80,9 @@ a {
 }
 
 @layer components {
+  .container-main {
+    @apply flex min-h-screen flex-col items-center justify-between p-3 mt-40 lg:mt-20;
+  }
   .card-contact {
     @apply flex justify-between items-center h-36 w-full px-2 bg-gray-50 rounded;
   }
@@ -85,7 +90,7 @@ a {
     @apply flex justify-between items-center max-w-[23.125rem] w-[21.4375rem] h-36 md:h-40 px-5 rounded-md bg-white overflow-hidden;
   }
   .container-form {
-    @apply flex max-h-fit w-full px-3 py-7 bg-white border-2 border-sky-600 md:border-none rounded-r-md;
+    @apply flex max-h-fit w-full max-w-[537px] px-3 py-7 bg-white border-2 border-sky-600 lg:border-none rounded-r-md;
   }
   .button-base {
     @apply flex justify-center items-center w-full min-w-fit rounded border-2 font-semibold;

@@ -20,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-gray-100`} suppressHydrationWarning={true}>
+      <body className={`${inter.className} bg-gray-100 scrollbar scrollbar-w-2 scrollbar-thumb-rounded-md scrollbar-thumb-sky-800 scrollbar-track-sky-600`} suppressHydrationWarning={true}>
         <Header />
         <ToastContainer
           position="top-right"
@@ -35,10 +35,8 @@ export default function RootLayout({
           theme="light"
         />
         <ClientProvider>
-          {/* <Modal /> */}
           {children}
         </ClientProvider>
-        <ToastContainer />
       </body>
     </html>
   );
