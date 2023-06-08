@@ -1,10 +1,11 @@
 "use client";
 
-import { useClient } from "@/hooks/useClient";
+import { useAuth } from "@/hooks/useAuth";
 import React from "react";
 
 const DeleteClient = () => {
-  const { setOpenModal, handleRemoveClientOrContact, clientCurrent } = useClient();
+  const { setOpenModal, handleRemoveClientOrContact, clientCurrent } =
+    useAuth();
 
   return (
     <div className="flex flex-col gap-5">
@@ -23,7 +24,9 @@ const DeleteClient = () => {
         </button>
         <button
           className="bg-rose-500 p-2 rounded shadow shadow-rose-500 text-white font-bold"
-          onClick={() => handleRemoveClientOrContact(clientCurrent.id, "clients")}
+          onClick={() =>
+            handleRemoveClientOrContact(clientCurrent.id, "clients")
+          }
         >
           Sim, excluir informação
         </button>

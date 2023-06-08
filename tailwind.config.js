@@ -36,12 +36,14 @@ module.exports = {
           },
           to: {
             transform: "translateY(80px)",
+            top: 20,
             opacity: 1,
           },
         },
         slide_out_top: {
           from: {
             transform: "translateY(80px)",
+            top: 20,
             opacity: 0.5,
           },
           to: {

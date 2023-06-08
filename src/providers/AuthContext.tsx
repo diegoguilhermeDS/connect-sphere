@@ -9,9 +9,13 @@ import {
   iErrorData,
   InforamtionCurrent,
   tokenDecode,
-} from "./ClientContext.types";
+} from "./AuthContext.types";
 import { useRouter } from "next/navigation";
-import { ClientRegisterData, ClientUpdateData, LoginData } from "@/schemas/client.schema";
+import {
+  ClientRegisterData,
+  ClientUpdateData,
+  LoginData,
+} from "@/schemas/client.schema";
 import { api } from "@/services/api";
 import { setCookie, parseCookies, destroyCookie } from "nookies";
 import Toast from "@/components/Toast";
@@ -28,6 +32,7 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
   const router = useRouter();
 
   const [openModal, setOpenModal] = useState(false);
+  const [loadBtn, setLoadBtn] = useState(false);
   const [typeModal, setTypeModal] = useState<string>("");
   const [inforCurrent, setInforCurrent] = useState<InforamtionCurrent>(
     {} as InforamtionCurrent
@@ -35,7 +40,7 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
   const [clientCurrent, setClientCurrent] = useState<AuthenticatedClient>(
     {} as AuthenticatedClient
   );
-  const [contactCurrent, setContactCurrent] = useState<Contact>({} as Contact)
+  const [contactCurrent, setContactCurrent] = useState<Contact>({} as Contact);
 
   const token = parseCookies();
   if (token["client.token"]) {
@@ -44,6 +49,7 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
 
   const handleLogin = async (loginData: LoginData) => {
     try {
+      setLoadBtn(true)
       const res = await api.post("login/", loginData);
       var decoded: tokenDecode = jwtDecode(res.data.token);
       setCookie(null, "client.token", res.data.token, {
@@ -56,17 +62,7 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
       });
 
       api.defaults.headers.common.Authorization = `Bearer ${res.data.token}`;
-      toast("testando toastify",{
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-
+      Toast({message: "Login feito com successo!", type: "success"})
       router.push("/dashboard");
     } catch (error) {
       const err = error as AxiosError<iErrorData>;
@@ -78,6 +74,8 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
         message: msg,
       });
     }
+
+    setLoadBtn(false)
   };
 
   const handleRegister = async (clientRegisterData: ClientRegisterData) => {
@@ -88,6 +86,7 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
       phone: phone,
     };
     try {
+      setLoadBtn(true)
       delete data["confirmPassword"];
       const res = await api.post("clients/", data);
       Toast({ message: "Cliente criado com sucesso!", type: "success" });
@@ -100,6 +99,8 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
         message: msg,
       });
     }
+
+    setLoadBtn(false)
   };
 
   const handleRemoveClientOrContact = async (
@@ -123,15 +124,18 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
 
   const handleUpdateClient = async (id: string, data: ClientUpdateData) => {
     try {
-      const res = await api.patch(`clients/${id}`, data)
-      Toast({message: "Os dados foram atualizados com sucesso!", type: "success"})
-      setOpenModal(false)
-      router.refresh()
+      const res = await api.patch(`clients/${id}`, data);
+      Toast({
+        message: "Os dados foram atualizados com sucesso!",
+        type: "success",
+      });
+      setOpenModal(false);
+      router.refresh();
     } catch (error) {
-      console.log(error)
-      Toast({message: "Ops! algo deu errado. Tente novamente!"})
+      console.log(error);
+      Toast({ message: "Ops! algo deu errado. Tente novamente!" });
     }
-  }
+  };
 
   return (
     <ClientContext.Provider
@@ -149,7 +153,9 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
         clientCurrent,
         setClientCurrent,
         contactCurrent,
-        setContactCurrent
+        setContactCurrent,
+        loadBtn,
+        setLoadBtn
       }}
     >
       <InformationProvider setOpenModal={setOpenModal}>

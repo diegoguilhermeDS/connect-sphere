@@ -7,7 +7,7 @@ import { api } from "@/services/api";
 import Toast from "@/components/Toast";
 import { useRouter } from "next/navigation";
 import { AxiosError } from "axios";
-import { InforamtionCurrent } from "../ClientContext.types";
+import { InforamtionCurrent } from "../AuthContext.types";
 
 export const InformationContext = createContext<iInformationContextProps>(
   {} as iInformationContextProps
@@ -54,9 +54,12 @@ export const InformationProvider = ({
     } catch (error) {
       console.log(error);
       const err = error as AxiosError;
-      const msg = err.response?.status === 409 ?  "Ops! E-mail ou telefone já existem" : err.message
+      const msg =
+        err.response?.status === 409
+          ? "Ops! E-mail ou telefone já existem"
+          : err.message;
       Toast({
-        message: msg
+        message: msg,
       });
     }
   };
@@ -66,17 +69,18 @@ export const InformationProvider = ({
     endPoint: "clients" | "contacts",
     id: string,
     inforId: string,
-    oldInfor: InforamtionCurrent) => {
+    oldInfor: InforamtionCurrent
+  ) => {
     const re = /\W+/g;
     try {
       const data: InformationData = { ...inforData };
       if (inforData.phone) {
         const phone = inforData.phone.split(re).join("");
-       if(phone !== oldInfor.phone){
-         data.phone = phone;
-       } else {
-        delete data.phone
-       }
+        if (phone !== oldInfor.phone) {
+          data.phone = phone;
+        } else {
+          delete data.phone;
+        }
       } else {
         delete data.phone;
       }
@@ -90,7 +94,7 @@ export const InformationProvider = ({
           throw new AxiosError("E-mail inválido");
         }
       }
-      console.log(data)
+      console.log(data);
       const res = await api.patch(`${endPoint}/infor/${inforId}`, data);
       Toast({
         message: "Informações atualizadas com sucesso!",
@@ -101,7 +105,10 @@ export const InformationProvider = ({
     } catch (error) {
       console.log(error);
       const err = error as AxiosError;
-      const msg = err.response?.status === 409 ?  "Ops! E-mail ou telefone já existem" : err.message
+      const msg =
+        err.response?.status === 409
+          ? "Ops! E-mail ou telefone já existem"
+          : err.message;
       Toast({
         message: msg,
       });

@@ -1,6 +1,6 @@
 import Input from "@/components/Input";
 import Toast from "@/components/Toast";
-import { useClient } from "@/hooks/useClient";
+import { useAuth } from "@/hooks/useAuth";
 import { ClientUpdateData, clientUpdateSchema } from "@/schemas/client.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useState } from "react";
@@ -15,25 +15,31 @@ const UpdateClient = () => {
     resolver: zodResolver(clientUpdateSchema),
   });
 
-  const { clientCurrent, handleUpdateClient } = useClient();
-  const [nameValue, setNameValue] = useState(clientCurrent.name)
+  const { clientCurrent, handleUpdateClient } = useAuth();
+  const [nameValue, setNameValue] = useState(clientCurrent.name);
 
   const handleUpdate = (data: ClientUpdateData) => {
-    delete data.confirmPassword
+    delete data.confirmPassword;
 
-    if(data.password!.length <= 0){
-      delete data.password
+    if (data.password!.length <= 0) {
+      delete data.password;
     } else {
-      if(data.password!.length <= 7 ){
-        return Toast({message: "A senha deve ter no minímo 8 digitos", type: "error"})
+      if (data.password!.length <= 7) {
+        return Toast({
+          message: "A senha deve ter no minímo 8 digitos",
+          type: "error",
+        });
       }
     }
 
-    if(data.name!.length <= 2){
-      return Toast({message: "O nome deve conter pelo menos 3 letras", type: "error"})
+    if (data.name!.length <= 2) {
+      return Toast({
+        message: "O nome deve conter pelo menos 3 letras",
+        type: "error",
+      });
     }
 
-    handleUpdateClient(clientCurrent.id, data)
+    handleUpdateClient(clientCurrent.id, data);
   };
 
   return (

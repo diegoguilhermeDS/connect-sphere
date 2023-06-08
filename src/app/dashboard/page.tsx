@@ -1,9 +1,7 @@
 import React from "react";
 import { api } from "@/services/api";
 import { cookies } from "next/headers";
-import { AuthenticatedClient } from "@/providers/ClientContext.types";
-import LisntInformation from "@/components/Information";
-import Icon from "@/components/Icons";
+import { AuthenticatedClient } from "@/providers/AuthContext.types";
 import ClientCard from "@/components/ClientCard";
 import ContactCard from "@/components/ContactCard";
 
@@ -30,16 +28,14 @@ export default async function DashboardPage() {
   const authClient = await getClient();
 
   return (
-    <main className="flex min-h-screen flex-col items-center gap-10 p-24">
-      <h1>Dashboard Page</h1>
-      <section className="w-full bg-white p-4">
-        <ClientCard authClient={authClient}/>
-        <LisntInformation information={authClient.information} ownerId={authClient.id} ownerInformation="clients"/>        
+    <main className="container-main justify-start gap-20 lg:gap-10 lg:flex-row-reverse lg:items-start lg:container lg:mx-auto lg:min-h-[600px]">
+      <section className="lg:w-[40%] flex justify-end">
+        <ClientCard authClient={authClient} />
       </section>
-      <section>
-        <ul className="grid grid-cols-3 gap-5 w-full">
+      <section className="w-full">
+        <ul className="container-cards-contact">
           {authClient.contacts.map((contact, index) => (
-            <ContactCard contact={contact} key={index}/>
+            <ContactCard contact={contact} key={index} />
           ))}
         </ul>
       </section>

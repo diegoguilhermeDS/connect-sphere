@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 * {
   margin: 0;
   padding: 0;
@@ -41,29 +40,27 @@ a {
   text-decoration: none;
 }
 
-
-
 @layer base {
   h1 {
-    @apply  font-bold text-5xl;
+    @apply font-bold text-5xl;
   }
   h2 {
-    @apply  font-semibold text-4xl;
+    @apply font-semibold text-4xl;
   }
   h3 {
-    @apply  font-semibold text-3xl;
+    @apply font-semibold text-3xl;
   }
   h4 {
-    @apply  font-semibold text-2xl;
+    @apply font-semibold text-2xl;
   }
   h5 {
-    @apply  font-semibold text-xl;
+    @apply font-semibold text-xl;
   }
   h6 {
-    @apply  font-semibold text-lg;
+    @apply font-semibold text-lg;
   }
   .h7 {
-    @apply  font-semibold text-base;
+    @apply font-semibold text-base;
   }
   p {
     @apply font-normal text-base;
@@ -83,14 +80,17 @@ a {
   .container-main {
     @apply flex min-h-screen flex-col items-center justify-between p-3 mt-40 lg:mt-20;
   }
+  .container-form {
+    @apply flex max-h-fit w-full max-w-[537px] px-3 py-7 bg-white border-2 border-sky-600 lg:border-none rounded-r-md;
+  }
+  .container-cards-contact {
+    @apply flex flex-col gap-7 w-full h-[500px] lg:h-[600px] overflow-y-auto bg-white lg:bg-transparent px-2 py-5 rounded-md shadow-md lg:shadow-none scrollbar scrollbar-w-1 scrollbar-track-rounded-xl;
+  }
   .card-contact {
     @apply flex justify-between items-center h-36 w-full px-2 bg-gray-50 rounded;
   }
   .card-client {
-    @apply flex justify-between items-center max-w-[23.125rem] w-[21.4375rem] h-36 md:h-40 px-5 rounded-md bg-white overflow-hidden;
-  }
-  .container-form {
-    @apply flex max-h-fit w-full max-w-[537px] px-3 py-7 bg-white border-2 border-sky-600 lg:border-none rounded-r-md;
+    @apply flex justify-between items-center max-w-[23.125rem] w-[21.4375rem] h-36 md:h-40 px-5 rounded-md bg-white overflow-hidden shadow-md;
   }
   .button-base {
     @apply flex justify-center items-center w-full min-w-fit rounded border-2 font-semibold;
