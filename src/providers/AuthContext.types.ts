@@ -23,6 +23,8 @@ interface iClientContextProps {
   setClientCurrent: Dispatch<SetStateAction<AuthenticatedClient>>;
   contactCurrent: Contact,
   setContactCurrent: Dispatch<SetStateAction<Contact>>
+  loadBtn: boolean;
+  setLoadBtn: Dispatch<SetStateAction<boolean>>;
 }
 
 interface iErrorData {

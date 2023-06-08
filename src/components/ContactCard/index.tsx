@@ -1,29 +1,44 @@
-"use client"
+"use client";
 
-import { Contact } from "@/providers/ClientContext.types";
+import { Contact } from "@/providers/AuthContext.types";
 import React from "react";
-import Icon from "../Icons";
-import { useClient } from "@/hooks/useClient";
+import { useAuth } from "@/hooks/useAuth";
+import Button from "../Button";
 
 interface iContactCardProps {
   contact: Contact;
 }
 
 const ContactCard = ({ contact }: iContactCardProps) => {
-
-  const { setOpenModal, setTypeModal, setContactCurrent } = useClient()
+  
 
   return (
-    <li className="flex gap-5 p-2 bg-white rounded shadow-md min-w-fit">
-      <div>
-          <h3>{contact.name}</h3>
-          <div className="flex flex-col">
-            <span>{contact.information[0].email}</span>
-            <span>{contact.information[0].phone}</span>
-          </div>
+    <li
+      className="relative card-contact min-h-[144px] lg:bg-white shadow 
+      before:content-[''] 
+      before:absolute 
+      before:top-0 
+      before:left-0 
+      before:w-1 
+      before:h-full 
+      before:bg-sky-800
+      before:rounded-l-lg"
+    >
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 w-2/3 lg:w-4/5">
+        <h1 className="h7">{contact.name}</h1>
+        <div className="flex flex-col lg:flex-row lg:justify-between gap-1 lg:gap-3 lg:w-[435px]">
+          <span className="text-xs whitespace-nowrap lg:text-sm text-gray-500 text-ellipsis overflow-hidden">
+            E-mail : {contact.information[0].email}
+          </span>
+          <span className="text-xs lg:text-sm text-gray-500">
+            Telefone : {contact.information[0].phone}
+          </span>
+        </div>
       </div>
       <div>
-        <Icon type="view" handle={() => (setOpenModal(true), setTypeModal("viewDetailsContact"), setContactCurrent(contact))}/>
+        <Button type="brand" size={2}>
+          Ver mais
+        </Button>
       </div>
     </li>
   );
