@@ -69,7 +69,7 @@ const Button = ({
           {children}
         </button>
       )}
-      {type == "outline" && <Link href={href!} className={`
+      {type == "outline" && <Link href={href!} onClick={handle} className={`
         button-base
         ${sizeVariants[size - 1]} 
         ${size == 1 ? "px-7" : "px-5"} 
