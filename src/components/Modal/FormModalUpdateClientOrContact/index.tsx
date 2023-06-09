@@ -38,7 +38,6 @@ const FormModalUpdateClientOrContact = ({
   };
 
   const updateContact = (data: ClientUpdateData) => {
-    console.log(endPoint)
     handleUpdateContact(id, name, data, setOpenModalUpdate, setHiddenModal)
   };
 
