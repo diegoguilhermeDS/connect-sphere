@@ -3,6 +3,7 @@ import {
   ClientUpdateData,
   LoginData,
 } from "@/schemas/client.schema";
+import { ContactData } from "@/schemas/contact.schema";
 import { Dispatch, ReactNode, SetStateAction } from "react";
 
 interface iClientProviderProps {
@@ -26,6 +27,7 @@ interface iClientContextProps {
     setOpenModal: Dispatch<SetStateAction<boolean>>,
     setHiddenModal: Dispatch<SetStateAction<boolean>>,
   ) => void;
+  handleCreateContact: (contactData: ContactData, setOpenModalAdd: Dispatch<SetStateAction<boolean>>) => void;
   handleUpdateContact: (
     id: string,
     oldName: string,

@@ -5,8 +5,8 @@ import { AuthenticatedClient } from "@/providers/AuthContext.types";
 import { RiPencilFill } from "react-icons/ri";
 import Button from "../Button";
 import Modal from "../Modal";
-import FormModalAddOrUpdateInfor from "../Modal/FormModalAddOrUpdateInfor";
 import DetailsModal from "../Modal/DetailsModal";
+import FormModalAddContact from "../Modal/FormModalAddContact";
 
 interface iClientCardProps {
   authClient: AuthenticatedClient;
@@ -28,8 +28,8 @@ const ClientCard = ({ authClient }: iClientCardProps) => {
         </div>
         <div className="flex flex-col gap-4 items-end">
           <div className="w-fit">
-            <Button type="brand" size={2} handle={() => setOpenModalAdd(true)}>
-              +
+            <Button type="success" size={2} handle={() => setOpenModalAdd(true)}>
+              <h5>+</h5>
             </Button>
           </div>
           <Button type="edit" size={2} handle={() => setOpenModalEdit(true)}>
@@ -37,7 +37,7 @@ const ClientCard = ({ authClient }: iClientCardProps) => {
           </Button>
         </div>
       </div>
-      {/* {openModalAdd && <Modal handleModal={() => setOpenModalAdd(false)}><FormModalAddOrUpdateInfor endPoint="clients" ownerId={authClient.id} setOpenModalAdd={setOpenModalAdd}/></Modal>} */}
+      {openModalAdd && <Modal handleModal={() => setOpenModalAdd(false)}><FormModalAddContact setOpenModalAdd={setOpenModalAdd}/></Modal>}
       {openModalEdit && <Modal handleModal={() => setOpenModalEdit(false)}><DetailsModal ownerInformation={authClient} setOpenModalEdit={setOpenModalEdit}/></Modal>}
     </>
   );

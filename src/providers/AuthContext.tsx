@@ -23,6 +23,7 @@ import { AxiosError } from "axios";
 import jwtDecode from "jwt-decode";
 import { InformationProvider } from "./InformationContext";
 import { toast } from "react-toastify";
+import { ContactData } from "@/schemas/contact.schema";
 
 export const ClientContext = createContext<iClientContextProps>(
   {} as iClientContextProps
@@ -105,14 +106,14 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
       const res = await api.delete(`${endPoint}/${id}`);
       Toast({ message: "Informações deletadas com sucesso!", type: "success" });
       setOpenModal(false);
-      setHiddenModal(false)
+      setHiddenModal(false);
       if (endPoint == "clients") {
-        setOpenModalEdit(false)
+        setOpenModalEdit(false);
         destroyCookie(null, "client.token");
         destroyCookie(null, "client.id");
         router.push("/");
       }
-      router.refresh()
+      router.refresh();
     } catch (error) {
       console.log(error);
       Toast({
@@ -126,21 +127,19 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
     oldName: string,
     data: ClientUpdateData,
     setOpenModal: React.Dispatch<React.SetStateAction<boolean>>,
-    setHiddenModal: React.Dispatch<React.SetStateAction<boolean>>,
+    setHiddenModal: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
+    if (data.name!.length <= 0 || data.name == oldName) {
+      delete data.name;
+    }
 
-    if(data.name!.length <= 0 || data.name == oldName){
-      delete data.name
-    } 
-    
-    if(data.password!.length <= 0){
-      delete data.password
-    } 
+    if (data.password!.length <= 0) {
+      delete data.password;
+    }
 
     try {
-
-      if (data.password && data.password!.length <= 7){
-        throw new Error("The password must have at least 8 characters")
+      if (data.password && data.password!.length <= 7) {
+        throw new Error("The password must have at least 8 characters");
       }
 
       const res = await api.patch(`clients/${id}`, data);
@@ -149,7 +148,7 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
         type: "success",
       });
       setOpenModal(false);
-      setHiddenModal(false)
+      setHiddenModal(false);
       router.refresh();
     } catch (error) {
       console.log(error);
@@ -157,19 +156,41 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
     }
   };
 
+  const handleCreateContact = async (contactData: ContactData, setOpenModalAdd: React.Dispatch<React.SetStateAction<boolean>>) => {
+    const re = /\W+/g;
+    const phone = contactData.phone.split(re).join("");
+    const data: ContactData = {
+      ...contactData,
+      phone: phone,
+    };
+    try {
+      setLoadBtn(true)
+      const res = await api.post("contacts/", data)
+      Toast({ message: "Contato criado com sucesso!", type: "success" });
+      setOpenModalAdd(false)
+      router.refresh()
+    } catch (error) {
+      const err = error as AxiosError<iErrorData>;
+      console.log(err);
+      const msg = "E-mail ou Telefone já existe";
+      Toast({
+        message: msg,
+      });
+    }
+
+    setLoadBtn(false)
+  };
 
   const handleUpdateContact = async (
     id: string,
     oldName: string,
     data: ClientUpdateData,
     setOpenModal: React.Dispatch<React.SetStateAction<boolean>>,
-    setHiddenModal: React.Dispatch<React.SetStateAction<boolean>>,
+    setHiddenModal: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
-
-    if(data.name!.length <= 0 || data.name == oldName){
-      delete data.name
-    } 
-
+    if (data.name!.length <= 0 || data.name == oldName) {
+      delete data.name;
+    }
 
     try {
       const res = await api.patch(`contacts/${id}`, data);
@@ -178,7 +199,7 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
         type: "success",
       });
       setOpenModal(false);
-      setHiddenModal(false)
+      setHiddenModal(false);
       router.refresh();
     } catch (error) {
       console.log(error);
@@ -193,6 +214,7 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
         handleRegister,
         handleRemoveClientOrContact,
         handleUpdateClient,
+        handleCreateContact,
         handleUpdateContact,
         loadBtn,
         setLoadBtn,
