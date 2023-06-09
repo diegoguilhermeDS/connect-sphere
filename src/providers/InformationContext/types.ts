@@ -11,7 +11,8 @@ interface iInformationContextProps {
     inforData: InformationData,
     endPoint: "clients" | "contacts",
     id: string,
-    setOpenModal: React.Dispatch<React.SetStateAction<boolean>>
+    setOpenModal: React.Dispatch<React.SetStateAction<boolean>>,
+    setHiddenModal: React.Dispatch<React.SetStateAction<boolean>>
   ) => void;
   updateInformation: (
     inforData: InformationData,
@@ -19,12 +20,15 @@ interface iInformationContextProps {
     id: string,
     inforId: string,
     oldInfor: Information,
-    setOpenModal: React.Dispatch<React.SetStateAction<boolean>>
+    setOpenModal: React.Dispatch<React.SetStateAction<boolean>>,
+    setHiddenModal: React.Dispatch<React.SetStateAction<boolean>>,
   ) => void;
   deleteInformation: (
     endPoint: "clients" | "contacts",
     id: string,
-    inforId: string
+    inforId: string,
+    setOpenModal: React.Dispatch<React.SetStateAction<boolean>>,
+    setHiddenModal: React.Dispatch<React.SetStateAction<boolean>>
   ) => void;
   loadBtn: boolean
   setLoadBtn: Dispatch<SetStateAction<boolean>>

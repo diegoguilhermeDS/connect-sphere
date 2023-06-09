@@ -16,14 +16,16 @@ interface iFormModalAddOrUpdateInforProps {
   infor?: Information;
   endPoint: "clients" | "contacts";
   ownerId: string;
-  handleModal: React.Dispatch<React.SetStateAction<boolean>>
+  setHiddenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpenModalAdd: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const FormModalAddOrUpdateInfor = ({
+const   FormModalAddOrUpdateInfor = ({
   endPoint,
   ownerId,
   infor,
-  handleModal
+  setHiddenModal,
+  setOpenModalAdd,
 }: iFormModalAddOrUpdateInforProps) => {
   const { addInformation, updateInformation } = useInformation();
 
@@ -39,16 +41,24 @@ const FormModalAddOrUpdateInfor = ({
   });
 
   const handleAddInformation = (data: InformationData) => {
-    addInformation(data, endPoint, ownerId, handleModal);
+    addInformation(data, endPoint, ownerId, setOpenModalAdd, setHiddenModal);
   };
 
   const handleUpdateInformation = (data: InformationData) => {
-    updateInformation(data, endPoint, ownerId, infor!.id, infor!, handleModal);
+    updateInformation(
+      data,
+      endPoint,
+      ownerId,
+      infor!.id,
+      infor!,
+      setOpenModalAdd,
+      setHiddenModal
+    );
   };
 
   return (
     <form
-      className="flex flex-col gap-5"
+      className="flex flex-col gap-5 lg:w-[340px] mt-8"
       onSubmit={
         !infor
           ? handleSubmit(handleAddInformation)
@@ -76,8 +86,10 @@ const FormModalAddOrUpdateInfor = ({
             "
         />
         {errors.email && (
-        <span className="absolute -bottom-4 text-xs text-rose-600">{errors.email.message}</span>
-      )}
+          <span className="absolute -bottom-4 text-xs text-rose-600">
+            {errors.email.message}
+          </span>
+        )}
       </div>
       <div className="relative flex flex-col gap-2 mb-4">
         <label htmlFor="phone" className="input-label text-gray-950">
@@ -98,15 +110,25 @@ const FormModalAddOrUpdateInfor = ({
           "
         />
         {errors.phone && (
-        <span className="absolute -bottom-4 text-xs text-rose-600">{errors.phone.message}</span>
-      )}
+          <span className="absolute -bottom-4 text-xs text-rose-600">
+            {errors.phone.message}
+          </span>
+        )}
       </div>
-      <Button
-        type="brand"
-        submit
-      >
-        Enviar
-      </Button>
+      <div className="flex gap-5">
+        <div className="sm:w-[40%]">
+          <Button
+            type="negative"
+            submit={false}
+            handle={() => (setOpenModalAdd(false), setHiddenModal(false))}
+          >
+            Cancelar
+          </Button>
+        </div>
+        <Button type="brand" submit>
+          Enviar
+        </Button>
+      </div>
     </form>
   );
 };
