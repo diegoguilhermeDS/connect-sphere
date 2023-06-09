@@ -23,7 +23,7 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 z-40 lg:static w-full shadow-md bg-gray-50 px-2 ${
-        openMenu == "open" ? "h-40" : "h-20"
+        openMenu == "close" ? "h-40" : "h-20"
       } lg:h-20 transition-all ease-in-out duration-500`}
     >
       <div className="relative container mx-auto flex justify-between items-center h-20">
@@ -32,7 +32,9 @@ const Header = () => {
         </h6>
         <button
           className="flex justify-center items-center lg:hidden w-10 h-10"
-          onClick={() => setOpenMenu(openMenu == "open" ? "close" : "open")}
+          onClick={() =>
+            setOpenMenu(openMenu == "open" || openMenu == "" ? "close" : "open")
+          }
         >
           {openMenu == "open" || openMenu == "" ? (
             <RiMenuFill
@@ -50,22 +52,36 @@ const Header = () => {
         </button>
         <nav
           className={`absolute right-0 -top-full ${
-            openMenu == "open" && "animate-slide_in_top"
-          }  ${openMenu == "close" && "animate-slide_out_top"} 
+            openMenu == "close" && "animate-slide_in_top"
+          }  ${openMenu == "open" && "animate-slide_out_top"} 
           lg:static lg:animate-none`}
         >
           {pathName == "/" && (
-            <Button type="outline" href="/register" size={2}>
+            <Button
+              type="outline"
+              href="/register"
+              size={2}
+              handle={() => setOpenMenu("")}
+            >
               Cadastrar
             </Button>
           )}
           {pathName == "/register" && (
-            <Button type="outline" href="/" size={2}>
+            <Button
+              type="outline"
+              href="/"
+              size={2}
+              handle={() => setOpenMenu("")}
+            >
               Voltar
             </Button>
           )}
           {pathName == "/dashboard" && (
-            <Button type="edit" handle={handleLogout} size={2}>
+            <Button
+              type="edit"
+              handle={() => (handleLogout(), setOpenMenu(""))}
+              size={2}
+            >
               logout
             </Button>
           )}
