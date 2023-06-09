@@ -14,10 +14,6 @@ export const clientRegisterSchema = z.object({
 export const clientUpdateSchema = z.object({
     name: z.string().optional(),
     password: z.string().optional(),
-    confirmPassword: z.string().optional(),
-}).refine((data) => data.password === data.confirmPassword, {
-    message: "As senhas não correspondem",
-    path: ["confirmPassword"]
 })
 
 export const loginSchema = z.object({

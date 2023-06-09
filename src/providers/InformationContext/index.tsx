@@ -24,7 +24,8 @@ export const InformationProvider = ({
     inforData: InformationData,
     endPoint: "clients" | "contacts",
     id: string,
-    setOpenModal: React.Dispatch<React.SetStateAction<boolean>>
+    setOpenModal: React.Dispatch<React.SetStateAction<boolean>>,
+    setHiddenModal: React.Dispatch<React.SetStateAction<boolean>>,
   ) => {
     const re = /\W+/g;
     try {
@@ -53,6 +54,7 @@ export const InformationProvider = ({
         type: "success",
       });
       setOpenModal(false)
+      setHiddenModal(false)
     } catch (error) {
       console.log(error);
       const err = error as AxiosError;
@@ -72,7 +74,8 @@ export const InformationProvider = ({
     id: string,
     inforId: string,
     oldInfor: Information,
-    setOpenModal: React.Dispatch<React.SetStateAction<boolean>>
+    setOpenModal: React.Dispatch<React.SetStateAction<boolean>>,
+    setHiddenModal: React.Dispatch<React.SetStateAction<boolean>>,
   ) => {
     const re = /\W+/g;
     try {
@@ -97,13 +100,14 @@ export const InformationProvider = ({
           throw new AxiosError("E-mail inválido");
         }
       }
-      console.log(data);
+
       const res = await api.patch(`${endPoint}/infor/${inforId}`, data);
       Toast({
         message: "Informações atualizadas com sucesso!",
         type: "success",
       });
       setOpenModal(false);
+      setHiddenModal(false)
       router.refresh();
     } catch (error) {
       console.log(error);
@@ -121,12 +125,15 @@ export const InformationProvider = ({
   const deleteInformation = async (
     endPoint: "clients" | "contacts",
     id: string,
-    inforId: string
+    inforId: string,
+    setOpenModal: React.Dispatch<React.SetStateAction<boolean>>,
+    setHiddenModal: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
     try {
       const res = await api.delete(`${endPoint}/infor/${inforId}`);
       Toast({ message: "Informações deletadas com sucesso!", type: "success" });
-      // setOpenModal(false);
+      setOpenModal(false);
+      setHiddenModal(false)
       router.refresh();
     } catch (error) {
       console.log(error);

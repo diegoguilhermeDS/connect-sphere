@@ -1,4 +1,8 @@
-import { ClientRegisterData, ClientUpdateData, LoginData } from "@/schemas/client.schema";
+import {
+  ClientRegisterData,
+  ClientUpdateData,
+  LoginData,
+} from "@/schemas/client.schema";
 import { Dispatch, ReactNode, SetStateAction } from "react";
 
 interface iClientProviderProps {
@@ -10,19 +14,25 @@ interface iClientContextProps {
   handleRegister: (clientRegisterData: ClientRegisterData) => void;
   handleRemoveClientOrContact: (
     id: string,
-    endPoint: "clients" | "contacts"
+    endPoint: "clients" | "contacts",
+    setOpenModal: Dispatch<SetStateAction<boolean>>,
+    setHiddenModal: React.Dispatch<React.SetStateAction<boolean>>,
+    setOpenModalEdit: React.Dispatch<React.SetStateAction<boolean>>
   ) => void;
-  handleUpdateClient: (id: string, data: ClientUpdateData) => void
-  openModal: boolean;
-  setOpenModal: Dispatch<SetStateAction<boolean>>;
-  typeModal: string;
-  setTypeModal: Dispatch<SetStateAction<string>>;
-  inforCurrent: InforamtionCurrent;
-  setInforCurrent: Dispatch<SetStateAction<InforamtionCurrent>>;
-  clientCurrent: AuthenticatedClient;
-  setClientCurrent: Dispatch<SetStateAction<AuthenticatedClient>>;
-  contactCurrent: Contact,
-  setContactCurrent: Dispatch<SetStateAction<Contact>>
+  handleUpdateClient: (
+    id: string,
+    oldName: string,
+    data: ClientUpdateData,
+    setOpenModal: Dispatch<SetStateAction<boolean>>,
+    setHiddenModal: Dispatch<SetStateAction<boolean>>,
+  ) => void;
+  handleUpdateContact: (
+    id: string,
+    oldName: string,
+    data: ClientUpdateData,
+    setOpenModal: Dispatch<SetStateAction<boolean>>,
+    setHiddenModal: Dispatch<SetStateAction<boolean>>,
+  ) => void;
   loadBtn: boolean;
   setLoadBtn: Dispatch<SetStateAction<boolean>>;
 }
@@ -76,5 +86,5 @@ export type {
   AuthenticatedClient,
   Information,
   InforamtionCurrent,
-  Contact
+  Contact,
 };
