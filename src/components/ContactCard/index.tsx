@@ -43,7 +43,7 @@ const ContactCard = ({ contact }: iContactCardProps) => {
           </Button>
         </div>
       </li>
-      {openModal && <Modal handleModal={() => setOpenModal(false)}><DetailsModal ownerInformation={contact}/></Modal>}
+      {openModal && <Modal handleModal={() => setOpenModal(false)}><DetailsModal ownerInformation={contact} setOpenModalEdit={setOpenModal}/></Modal>}
     </>
   );
 };
