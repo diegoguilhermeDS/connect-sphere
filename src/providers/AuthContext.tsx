@@ -31,16 +31,7 @@ export const ClientContext = createContext<iClientContextProps>(
 export const ClientProvider = ({ children }: iClientProviderProps) => {
   const router = useRouter();
 
-  const [openModal, setOpenModal] = useState(false);
   const [loadBtn, setLoadBtn] = useState(false);
-  const [typeModal, setTypeModal] = useState<string>("");
-  const [inforCurrent, setInforCurrent] = useState<InforamtionCurrent>(
-    {} as InforamtionCurrent
-  );
-  const [clientCurrent, setClientCurrent] = useState<AuthenticatedClient>(
-    {} as AuthenticatedClient
-  );
-  const [contactCurrent, setContactCurrent] = useState<Contact>({} as Contact);
 
   const token = parseCookies();
   if (token["client.token"]) {
@@ -49,7 +40,7 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
 
   const handleLogin = async (loginData: LoginData) => {
     try {
-      setLoadBtn(true)
+      setLoadBtn(true);
       const res = await api.post("login/", loginData);
       var decoded: tokenDecode = jwtDecode(res.data.token);
       setCookie(null, "client.token", res.data.token, {
@@ -62,7 +53,7 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
       });
 
       api.defaults.headers.common.Authorization = `Bearer ${res.data.token}`;
-      Toast({message: "Login feito com successo!", type: "success"})
+      Toast({ message: "Login feito com successo!", type: "success" });
       router.push("/dashboard");
     } catch (error) {
       const err = error as AxiosError<iErrorData>;
@@ -75,7 +66,7 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
       });
     }
 
-    setLoadBtn(false)
+    setLoadBtn(false);
   };
 
   const handleRegister = async (clientRegisterData: ClientRegisterData) => {
@@ -86,7 +77,7 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
       phone: phone,
     };
     try {
-      setLoadBtn(true)
+      setLoadBtn(true);
       delete data["confirmPassword"];
       const res = await api.post("clients/", data);
       Toast({ message: "Cliente criado com sucesso!", type: "success" });
@@ -100,20 +91,28 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
       });
     }
 
-    setLoadBtn(false)
+    setLoadBtn(false);
   };
 
   const handleRemoveClientOrContact = async (
     id: string,
-    endPoint: "clients" | "contacts"
+    endPoint: "clients" | "contacts",
+    setOpenModal: React.Dispatch<React.SetStateAction<boolean>>,
+    setHiddenModal: React.Dispatch<React.SetStateAction<boolean>>,
+    setOpenModalEdit: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
     try {
       const res = await api.delete(`${endPoint}/${id}`);
       Toast({ message: "Informações deletadas com sucesso!", type: "success" });
       setOpenModal(false);
-      destroyCookie(null, "client.token");
-      destroyCookie(null, "client.id");
-      router.push("/");
+      setHiddenModal(false)
+      if (endPoint == "clients") {
+        setOpenModalEdit(false)
+        destroyCookie(null, "client.token");
+        destroyCookie(null, "client.id");
+        router.push("/");
+      }
+      router.refresh()
     } catch (error) {
       console.log(error);
       Toast({
@@ -122,14 +121,64 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
     }
   };
 
-  const handleUpdateClient = async (id: string, data: ClientUpdateData) => {
+  const handleUpdateClient = async (
+    id: string,
+    oldName: string,
+    data: ClientUpdateData,
+    setOpenModal: React.Dispatch<React.SetStateAction<boolean>>,
+    setHiddenModal: React.Dispatch<React.SetStateAction<boolean>>,
+  ) => {
+
+    if(data.name!.length <= 0 || data.name == oldName){
+      delete data.name
+    } 
+    
+    if(data.password!.length <= 0){
+      delete data.password
+    } 
+
     try {
+
+      if (data.password && data.password!.length <= 7){
+        throw new Error("The password must have at least 8 characters")
+      }
+
       const res = await api.patch(`clients/${id}`, data);
       Toast({
         message: "Os dados foram atualizados com sucesso!",
         type: "success",
       });
       setOpenModal(false);
+      setHiddenModal(false)
+      router.refresh();
+    } catch (error) {
+      console.log(error);
+      Toast({ message: "Ops! algo deu errado. Tente novamente!" });
+    }
+  };
+
+
+  const handleUpdateContact = async (
+    id: string,
+    oldName: string,
+    data: ClientUpdateData,
+    setOpenModal: React.Dispatch<React.SetStateAction<boolean>>,
+    setHiddenModal: React.Dispatch<React.SetStateAction<boolean>>,
+  ) => {
+
+    if(data.name!.length <= 0 || data.name == oldName){
+      delete data.name
+    } 
+
+
+    try {
+      const res = await api.patch(`contacts/${id}`, data);
+      Toast({
+        message: "Os dados foram atualizados com sucesso!",
+        type: "success",
+      });
+      setOpenModal(false);
+      setHiddenModal(false)
       router.refresh();
     } catch (error) {
       console.log(error);
@@ -144,23 +193,12 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
         handleRegister,
         handleRemoveClientOrContact,
         handleUpdateClient,
-        openModal,
-        setOpenModal,
-        typeModal,
-        setTypeModal,
-        inforCurrent,
-        setInforCurrent,
-        clientCurrent,
-        setClientCurrent,
-        contactCurrent,
-        setContactCurrent,
+        handleUpdateContact,
         loadBtn,
-        setLoadBtn
+        setLoadBtn,
       }}
     >
-      <InformationProvider>
-        {children}
-      </InformationProvider>
+      <InformationProvider>{children}</InformationProvider>
     </ClientContext.Provider>
   );
 };

@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import { useAuth } from "@/hooks/useAuth";
 import { AuthenticatedClient } from "@/providers/AuthContext.types";
 import { RiPencilFill } from "react-icons/ri";
 import Button from "../Button";
 import Modal from "../Modal";
 import FormModalAddOrUpdateInfor from "../Modal/FormModalAddOrUpdateInfor";
+import DetailsModal from "../Modal/DetailsModal";
 
 interface iClientCardProps {
   authClient: AuthenticatedClient;
@@ -37,8 +37,8 @@ const ClientCard = ({ authClient }: iClientCardProps) => {
           </Button>
         </div>
       </div>
-      {openModalAdd && <Modal handleModal={() => setOpenModalAdd(false)}><FormModalAddOrUpdateInfor endPoint="clients" ownerId={authClient.id} handleModal={setOpenModalAdd}/></Modal>}
-      {openModalEdit && <Modal handleModal={() => setOpenModalEdit(false)}>Modal</Modal>}
+      {/* {openModalAdd && <Modal handleModal={() => setOpenModalAdd(false)}><FormModalAddOrUpdateInfor endPoint="clients" ownerId={authClient.id} setOpenModalAdd={setOpenModalAdd}/></Modal>} */}
+      {openModalEdit && <Modal handleModal={() => setOpenModalEdit(false)}><DetailsModal ownerInformation={authClient} setOpenModalEdit={setOpenModalEdit}/></Modal>}
     </>
   );
 };

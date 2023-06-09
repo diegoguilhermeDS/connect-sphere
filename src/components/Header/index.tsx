@@ -18,6 +18,7 @@ const Header = () => {
     destroyCookie(null, "client.id");
     Toast({ message: "Volte sempre!", type: "logout" });
     router.push("/");
+    router.refresh()
   };
 
   return (
