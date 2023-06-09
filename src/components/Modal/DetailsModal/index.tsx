@@ -10,7 +10,7 @@ import FormModalUpdateClientOrContact from "../FormModalUpdateClientOrContact";
 interface iDetailsModalProps {
   ownerInformation: {
     id: string;
-    is_active: boolean;
+    is_active?: boolean;
     created_at: string;
     name: string;
     information: Information[];
