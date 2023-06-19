@@ -13,19 +13,21 @@ import { Information } from "@/providers/AuthContext.types";
 import Button from "@/components/Button";
 
 interface iFormModalAddOrUpdateInforProps {
-  infor?: Information;
+  infor?: Information | null;
   endPoint: "clients" | "contacts";
   ownerId: string;
   setHiddenModal: React.Dispatch<React.SetStateAction<boolean>>;
   setOpenModalAdd: React.Dispatch<React.SetStateAction<boolean>>;
+  setCurrentInfor: React.Dispatch<React.SetStateAction<Information | null>>
 }
 
-const   FormModalAddOrUpdateInfor = ({
+const FormModalAddOrUpdateInfor = ({
   endPoint,
   ownerId,
   infor,
   setHiddenModal,
   setOpenModalAdd,
+  setCurrentInfor
 }: iFormModalAddOrUpdateInforProps) => {
   const { addInformation, updateInformation } = useInformation();
 
@@ -40,30 +42,26 @@ const   FormModalAddOrUpdateInfor = ({
     resolver: zodResolver(informationSchema),
   });
 
-  const handleAddInformation = (data: InformationData) => {
-    addInformation(data, endPoint, ownerId, setOpenModalAdd, setHiddenModal);
-  };
-
-  const handleUpdateInformation = (data: InformationData) => {
-    updateInformation(
-      data,
-      endPoint,
-      ownerId,
-      infor!.id,
-      infor!,
-      setOpenModalAdd,
-      setHiddenModal
-    );
+  const handleForm = (data: InformationData) => {
+    if (infor) {
+      updateInformation(
+        data,
+        endPoint,
+        ownerId,
+        infor!.id,
+        infor!,
+        setOpenModalAdd,
+        setHiddenModal
+      );
+    } else {
+      addInformation(data, endPoint, ownerId, setOpenModalAdd, setHiddenModal);
+    }
   };
 
   return (
     <form
       className="flex flex-col gap-5 lg:w-[340px] mt-8"
-      onSubmit={
-        !infor
-          ? handleSubmit(handleAddInformation)
-          : handleSubmit(handleUpdateInformation)
-      }
+      onSubmit={handleSubmit(handleForm)}
       noValidate={false}
     >
       <div className="relative flex flex-col gap-2">
@@ -120,7 +118,7 @@ const   FormModalAddOrUpdateInfor = ({
           <Button
             type="negative"
             submit={false}
-            handle={() => (setOpenModalAdd(false), setHiddenModal(false))}
+            handle={() => (setOpenModalAdd(false), setHiddenModal(false), setCurrentInfor(null))}
           >
             Cancelar
           </Button>

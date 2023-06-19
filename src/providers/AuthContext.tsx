@@ -127,7 +127,7 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
     oldName: string,
     data: ClientUpdateData,
     setOpenModal: React.Dispatch<React.SetStateAction<boolean>>,
-    setHiddenModal: React.Dispatch<React.SetStateAction<boolean>>
+    setOpenModalEdit: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
     if (data.name!.length <= 0 || data.name == oldName) {
       delete data.name;
@@ -148,7 +148,7 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
         type: "success",
       });
       setOpenModal(false);
-      setHiddenModal(false);
+      setOpenModalEdit(false)
       router.refresh();
     } catch (error) {
       console.log(error);
@@ -186,7 +186,7 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
     oldName: string,
     data: ClientUpdateData,
     setOpenModal: React.Dispatch<React.SetStateAction<boolean>>,
-    setHiddenModal: React.Dispatch<React.SetStateAction<boolean>>
+    setOpenModalEdit: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
     if (data.name!.length <= 0 || data.name == oldName) {
       delete data.name;
@@ -199,7 +199,7 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
         type: "success",
       });
       setOpenModal(false);
-      setHiddenModal(false);
+      setOpenModalEdit(false)
       router.refresh();
     } catch (error) {
       console.log(error);
