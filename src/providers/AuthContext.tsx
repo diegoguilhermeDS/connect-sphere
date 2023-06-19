@@ -22,8 +22,9 @@ import Toast from "@/components/Toast";
 import { AxiosError } from "axios";
 import jwtDecode from "jwt-decode";
 import { InformationProvider } from "./InformationContext";
-import { toast } from "react-toastify";
 import { ContactData } from "@/schemas/contact.schema";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const ClientContext = createContext<iClientContextProps>(
   {} as iClientContextProps
@@ -148,7 +149,7 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
         type: "success",
       });
       setOpenModal(false);
-      setOpenModalEdit(false)
+      setOpenModalEdit(false);
       router.refresh();
     } catch (error) {
       console.log(error);
@@ -156,7 +157,10 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
     }
   };
 
-  const handleCreateContact = async (contactData: ContactData, setOpenModalAdd: React.Dispatch<React.SetStateAction<boolean>>) => {
+  const handleCreateContact = async (
+    contactData: ContactData,
+    setOpenModalAdd: React.Dispatch<React.SetStateAction<boolean>>
+  ) => {
     const re = /\W+/g;
     const phone = contactData.phone.split(re).join("");
     const data: ContactData = {
@@ -164,11 +168,11 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
       phone: phone,
     };
     try {
-      setLoadBtn(true)
-      const res = await api.post("contacts/", data)
+      setLoadBtn(true);
+      const res = await api.post("contacts/", data);
       Toast({ message: "Contato criado com sucesso!", type: "success" });
-      setOpenModalAdd(false)
-      router.refresh()
+      setOpenModalAdd(false);
+      router.refresh();
     } catch (error) {
       const err = error as AxiosError<iErrorData>;
       console.log(err);
@@ -178,7 +182,7 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
       });
     }
 
-    setLoadBtn(false)
+    setLoadBtn(false);
   };
 
   const handleUpdateContact = async (
@@ -199,7 +203,7 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
         type: "success",
       });
       setOpenModal(false);
-      setOpenModalEdit(false)
+      setOpenModalEdit(false);
       router.refresh();
     } catch (error) {
       console.log(error);
@@ -220,7 +224,21 @@ export const ClientProvider = ({ children }: iClientProviderProps) => {
         setLoadBtn,
       }}
     >
-      <InformationProvider>{children}</InformationProvider>
+      <InformationProvider>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+        {children}
+      </InformationProvider>
     </ClientContext.Provider>
   );
 };
