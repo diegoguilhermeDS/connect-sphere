@@ -25,7 +25,7 @@ interface iClientContextProps {
     oldName: string,
     data: ClientUpdateData,
     setOpenModal: Dispatch<SetStateAction<boolean>>,
-    setHiddenModal: Dispatch<SetStateAction<boolean>>,
+    setOpenModalEdit: Dispatch<SetStateAction<boolean>>,
   ) => void;
   handleCreateContact: (contactData: ContactData, setOpenModalAdd: Dispatch<SetStateAction<boolean>>) => void;
   handleUpdateContact: (
@@ -33,7 +33,7 @@ interface iClientContextProps {
     oldName: string,
     data: ClientUpdateData,
     setOpenModal: Dispatch<SetStateAction<boolean>>,
-    setHiddenModal: Dispatch<SetStateAction<boolean>>,
+    setOpenModalEdit: Dispatch<SetStateAction<boolean>>,
   ) => void;
   loadBtn: boolean;
   setLoadBtn: Dispatch<SetStateAction<boolean>>;

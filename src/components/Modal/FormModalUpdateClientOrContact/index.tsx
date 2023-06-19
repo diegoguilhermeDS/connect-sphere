@@ -12,6 +12,7 @@ interface iFormModalUpdateClientOrContactProps {
   id: string;
   setOpenModalUpdate: React.Dispatch<React.SetStateAction<boolean>>;
   setHiddenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpenModalEdit: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const FormModalUpdateClientOrContact = ({
@@ -20,6 +21,7 @@ const FormModalUpdateClientOrContact = ({
   id,
   setOpenModalUpdate,
   setHiddenModal,
+  setOpenModalEdit
 }: iFormModalUpdateClientOrContactProps) => {
   const {
     register,
@@ -34,11 +36,11 @@ const FormModalUpdateClientOrContact = ({
   const [newName, setNewName] = useState(name);
 
   const UpdateClient = (data: ClientUpdateData) => {
-    handleUpdateClient(id, name, data, setOpenModalUpdate, setHiddenModal);
+    handleUpdateClient(id, name, data, setOpenModalUpdate, setOpenModalEdit);
   };
 
   const updateContact = (data: ClientUpdateData) => {
-    handleUpdateContact(id, name, data, setOpenModalUpdate, setHiddenModal)
+    handleUpdateContact(id, name, data, setOpenModalUpdate, setOpenModalEdit)
   };
 
   return (
