@@ -33,8 +33,8 @@ const DetailsModal = ({
   >("account");
   const [endPoint, setEndPoint] = useState<"clients" | "contacts">("clients");
   const [inforId, setInforId] = useState("");
-  const [currentInformation, setCurrentInformation] = useState<Information>(
-    {} as Information
+  const [currentInformation, setCurrentInformation] = useState<Information | null>(
+    null
   );
 
   return (
@@ -49,7 +49,9 @@ const DetailsModal = ({
                   <Button
                     type="success"
                     size={2}
-                    handle={() => (setHiddenModal(true), setOpenModalAdd(true))}
+                    handle={() => (setHiddenModal(true), setOpenModalAdd(true), setEndPoint(
+                      ownerInformation.contacts ? "clients" : "contacts"
+                    ))}
                   >
                     <h6>+</h6>
                   </Button>
@@ -138,11 +140,12 @@ const DetailsModal = ({
       )}
       {openModalAdd && (
         <FormModalAddOrUpdateInfor
-          endPoint="clients"
+          endPoint={endPoint}
           ownerId={ownerInformation.id}
           infor={currentInformation}
           setOpenModalAdd={setOpenModalAdd}
           setHiddenModal={setHiddenModal}
+          setCurrentInfor={setCurrentInformation}
         />
       )}
       {openModalUpdate && (
@@ -152,6 +155,7 @@ const DetailsModal = ({
           id={ownerInformation.id}
           setHiddenModal={setHiddenModal}
           setOpenModalUpdate={setOpenModalUpdate}
+          setOpenModalEdit={setOpenModalEdit}
         />
       )}
     </>
