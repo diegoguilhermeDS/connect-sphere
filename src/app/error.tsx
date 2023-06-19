@@ -16,7 +16,7 @@ export default function Error({ error, reset }: iErrorProps) {
     <div>
       <h1>Algo deu errado</h1>
       <button onClick={reset}>
-        Tentar novamente
+        Tentar novamente!
       </button>
     </div>
   );
