@@ -6,9 +6,12 @@
   <a href="https://github.com/diegoguilhermeDS/connect-sphere/commits/master">
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/diegoguilhermeDS/connect-sphere">
   </a>
-    
-   <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">
-   <a href="https://github.com/tgmarinho/README-ecoleta/stargazers">
+  
+  <a href="https://github.com/diegoguilhermeDS/connect-sphere/blob/main/LICENSE">
+    <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">
+  </a>
+   
+   <a href="https://github.com/diegoguilhermeDS/connect-sphere/stargazers">
     <img alt="Stargazers" src="https://img.shields.io/github/stars/diegoguilhermeDS/connect-sphere?style=social">
   </a>
 
@@ -125,6 +128,9 @@ As seguintes ferramentas foram usadas na construção do projeto: ([NextJs](http
 
 
 ## 📝 Licença
+Este projeto esta sobe a licença [MIT](./LICENSE).
+
+Feito com ❤️ por Diego Guilherme 👋🏽 [Entre em contato!](https://www.linkedin.com/in/diegoguilhermeds/)
 
 ##  Versões do README
 
