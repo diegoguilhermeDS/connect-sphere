@@ -1,15 +1,46 @@
-# Projeto Connect Sphere
+<div align="center"><img width="1000" src="https://github.com/diegoguilhermeDS/connect-sphere/blob/ddea7179efa529d1029faaa93234edb8a8978a40/public/Connect%20Sphere.png"></div>
 
-<div align="center"><img width="1000" src="https://github.com/diegoguilhermeDS/connect-sphere/blob/b4311bbabd001ed3153cf2340121ed4976128be5/public/register%20(1).png"></div>
 
-# :pencil: Descrição
+# Projeto Connect Sphere 
 
-Bem-vindo ao Connect Sphere!
-Nosso website é uma plataforma abrangente para gerenciamento de clientes e contatos, oferecendo uma experiência intuitiva e eficiente para profissionais e empresas. Com recursos poderosos e uma interface amigável, ajudamos você a fortalecer seus relacionamentos com os clientes e a organizar suas informações de contato de maneira eficaz.
+### :pencil: Description
 
-No Connect Sphere, estamos empenhados em fornecer a você as ferramentas necessárias para fortalecer seus relacionamentos com os clientes e otimizar sua eficiência. Explore nosso website e descubra como podemos ajudá-lo a criar conexões sólidas e duradouras com seus clientes.
+Welcome to Connect Sphere!
+Our website is a comprehensive platform for customer and contact management, offering an intuitive and efficient experience for professionals and businesses. With powerful features and a user-friendly interface, we help you strengthen your customer relationships and organize your contact information effectively.
 
-#  :art: Layout 
+At Connect Sphere, we are committed to providing you with the tools you need to strengthen your customer relationships and optimize your efficiency. Explore our website and find out how we can help you build strong, lasting connections with your customers.
+
+# Table of Contents
+ * [Sobre](#Sobre)
+    * [Tabela de Conteudo](#tabela-de-conteudo)
+    * [Instalação](#instalacao)
+    * [Como usar](#como-usar)
+       * [Pre Requisitos](#pre-requisitos)
+       * [Local files](#local-files)
+       * [Remote files](#remote-files)
+       * [Multiple files](#multiple-files)
+       * [Combo](#combo)
+    * [Tests](#testes)
+    * [Tecnologias](#tecnologias)
+  
+
+# Project Status
+<h4 align="center"> 
+	 🌐 Connect Sphere 🚀 Finalizado! ✅
+</h4>
+
+# Project Features
+- [x] Cadastro de usuário
+- [x] Login
+- [x] Editar usuário
+- [x] Deletar usuário
+- [x] Adicionar contato
+- [x] Remover contato
+- [x] Editar contato
+- [x] Adicionar novas informações para contato
+- [x] Editar as informações do contato
+
+#  :art: Demonstration - :link: [DEMO](https://connect-sphere.vercel.app/)
 
 ##  🌐 Moblie
  
@@ -22,16 +53,18 @@ No Connect Sphere, estamos empenhados em fornecer a você as ferramentas necess�
 
 ## 🌐 Home
 
-<div align="center"><img width="1000" src="https://github.com/diegoguilhermeDS/connect-sphere/blob/b4311bbabd001ed3153cf2340121ed4976128be5/public/dashboard%20(1).png"></div>
+<div align="center"><img width="500" src="https://github.com/diegoguilhermeDS/connect-sphere/blob/b4311bbabd001ed3153cf2340121ed4976128be5/public/dashboard%20(1).png"></div>
 
-## 🌐 Register 
+## 🌐 Login And Register 
 
-<div align="center"><img width="1000" src="https://github.com/diegoguilhermeDS/connect-sphere/blob/b4311bbabd001ed3153cf2340121ed4976128be5/public/register%20(1).png"></div>
+<div align="center">
+ <img width="500" src="https://github.com/diegoguilhermeDS/connect-sphere/blob/ddea7179efa529d1029faaa93234edb8a8978a40/public/login%20(1).png">
+ <img width="500" src="https://github.com/diegoguilhermeDS/connect-sphere/blob/b4311bbabd001ed3153cf2340121ed4976128be5/public/register%20(1).png">
+</div>
 
 # 💻 Desenvoldores:
 💻 Diego Guilherme
 * [GitHub](https://github.com/diegoguilhermeDS)
 * [LinkedIn](https://www.linkedin.com/in/diego-guilherme-616410200)
 
-## :link: Link para o Projeto
-[Connect Sphere](https://connect-sphere.vercel.app/)
+
