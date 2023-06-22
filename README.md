@@ -4,11 +4,10 @@
 
 # :pencil: Descrição
 
-Hamburgueria da Kenzie é um um site de fast food. Algumas funcionalidades são adicionar e remover do carrinho, filtro através de uma barra de pesquisa.
+Bem-vindo ao Connect Sphere!
+Nosso website é uma plataforma abrangente para gerenciamento de clientes e contatos, oferecendo uma experiência intuitiva e eficiente para profissionais e empresas. Com recursos poderosos e uma interface amigável, ajudamos você a fortalecer seus relacionamentos com os clientes e a organizar suas informações de contato de maneira eficaz.
 
-O projeto foi desenvolvido com o intuito de praticar React, colocando em pratica todo conhecimento absorvido até o momento, proposto pela Kenzie Academy Brasil.
-
-Ainda, foram empregados conhecimentos de HTML, CSS, Javascript.
+No Connect Sphere, estamos empenhados em fornecer a você as ferramentas necessárias para fortalecer seus relacionamentos com os clientes e otimizar sua eficiência. Explore nosso website e descubra como podemos ajudá-lo a criar conexões sólidas e duradouras com seus clientes.
 
 #  :art: Layout 
 
