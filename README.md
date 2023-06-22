@@ -59,10 +59,10 @@ O layout da aplicação está disponível no Figma:
 
 ### Mobile
 <div align="center" justify="center">
-  <img width="100" src="https://github.com/diegoguilhermeDS/connect-sphere/blob/b4311bbabd001ed3153cf2340121ed4976128be5/public/login.png">
-  <img width="100" src="https://github.com/diegoguilhermeDS/connect-sphere/blob/b4311bbabd001ed3153cf2340121ed4976128be5/public/login%20-%20header.png">
-  <img width="100" src="https://github.com/diegoguilhermeDS/connect-sphere/blob/b4311bbabd001ed3153cf2340121ed4976128be5/public/register.png">
-  <img width="100" src="https://github.com/diegoguilhermeDS/connect-sphere/blob/b4311bbabd001ed3153cf2340121ed4976128be5/public/dashboard.png">
+  <img width="150" src="https://github.com/diegoguilhermeDS/connect-sphere/blob/b4311bbabd001ed3153cf2340121ed4976128be5/public/login.png">
+  <img width="150" src="https://github.com/diegoguilhermeDS/connect-sphere/blob/b4311bbabd001ed3153cf2340121ed4976128be5/public/login%20-%20header.png">
+  <img width="150" src="https://github.com/diegoguilhermeDS/connect-sphere/blob/b6ab2482b9d67984aa862b19d786b802265f1c19/public/register.png">
+  <img width="150" src="https://github.com/diegoguilhermeDS/connect-sphere/blob/b6ab2482b9d67984aa862b19d786b802265f1c19/public/dashboard.png">
 </div>
 
 ### Web
