@@ -38,7 +38,7 @@ const ClientCard = ({ authClient }: iClientCardProps) => {
         </div>
       </div>
       {openModalAdd && <Modal handleModal={() => setOpenModalAdd(false)}><FormModalAddContact setOpenModalAdd={setOpenModalAdd}/></Modal>}
-      {openModalEdit && <Modal handleModal={() => setOpenModalEdit(false)}><DetailsModal ownerInformation={authClient} setOpenModalEdit={setOpenModalEdit}/></Modal>}
+      {openModalEdit && <Modal handleModal={() => setOpenModalEdit(false)}><DetailsModal ownerInformation={authClient} setOpenModalEdit={setOpenModalEdit} endPoint="clients"/></Modal>}
     </>
   );
 };
