@@ -22,6 +22,7 @@ interface iInformationContextProps {
     oldInfor: Information,
     setOpenModal: React.Dispatch<React.SetStateAction<boolean>>,
     setHiddenModal: React.Dispatch<React.SetStateAction<boolean>>,
+    setCurrentInformation: React.Dispatch<React.SetStateAction<Information | null>>
   ) => void;
   deleteInformation: (
     endPoint: "clients" | "contacts",

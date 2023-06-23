@@ -76,6 +76,7 @@ export const InformationProvider = ({
     oldInfor: Information,
     setOpenModal: React.Dispatch<React.SetStateAction<boolean>>,
     setHiddenModal: React.Dispatch<React.SetStateAction<boolean>>,
+    setCurrentInformation: React.Dispatch<React.SetStateAction<Information | null>>
   ) => {
     const re = /\W+/g;
     try {
@@ -108,6 +109,7 @@ export const InformationProvider = ({
       });
       setOpenModal(false);
       setHiddenModal(false)
+      setCurrentInformation(null)
       router.refresh();
     } catch (error) {
       console.log(error);
