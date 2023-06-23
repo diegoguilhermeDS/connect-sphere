@@ -18,11 +18,13 @@ interface iDetailsModalProps {
     clientId?: string;
   };
   setOpenModalEdit: React.Dispatch<React.SetStateAction<boolean>>;
+  endPoint: "clients" | "contacts"
 }
 
 const DetailsModal = ({
   ownerInformation,
   setOpenModalEdit,
+  endPoint
 }: iDetailsModalProps) => {
   const [hiddenModal, setHiddenModal] = useState(false);
   const [openModalAdd, setOpenModalAdd] = useState(false);
@@ -31,7 +33,6 @@ const DetailsModal = ({
   const [typeModalDelete, setTypeModalDelete] = useState<
     "infor" | "account" | "contact"
   >("account");
-  const [endPoint, setEndPoint] = useState<"clients" | "contacts">("clients");
   const [inforId, setInforId] = useState("");
   const [currentInformation, setCurrentInformation] = useState<Information | null>(
     null
@@ -49,9 +50,7 @@ const DetailsModal = ({
                   <Button
                     type="success"
                     size={2}
-                    handle={() => (setHiddenModal(true), setOpenModalAdd(true), setEndPoint(
-                      ownerInformation.contacts ? "clients" : "contacts"
-                    ))}
+                    handle={() => (setHiddenModal(true), setOpenModalAdd(true))}
                   >
                     <h6>+</h6>
                   </Button>
@@ -62,9 +61,6 @@ const DetailsModal = ({
                     size={2}
                     handle={() => (
                       setHiddenModal(true),
-                      setEndPoint(
-                        ownerInformation.contacts ? "clients" : "contacts"
-                      ),
                       setOpenModalUpdate(true)
                     )}
                   >
@@ -80,10 +76,7 @@ const DetailsModal = ({
                       setTypeModalDelete(
                         ownerInformation.contacts ? "account" : "contact"
                       ),
-                      setHiddenModal(true),
-                      setEndPoint(
-                        ownerInformation.contacts ? "clients" : "contacts"
-                      )
+                      setHiddenModal(true)
                     )}
                   >
                     <RiDeleteBin6Fill size={18} />
@@ -108,9 +101,6 @@ const DetailsModal = ({
                 handleDelete={() => (
                   setOpenModalDelete(true),
                   setTypeModalDelete("infor"),
-                  setEndPoint(
-                    ownerInformation.contacts ? "clients" : "contacts"
-                  ),
                   setHiddenModal(true),
                   setInforId(infor.id)
                 )}
