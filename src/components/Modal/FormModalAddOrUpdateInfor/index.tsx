@@ -51,7 +51,8 @@ const FormModalAddOrUpdateInfor = ({
         infor!.id,
         infor!,
         setOpenModalAdd,
-        setHiddenModal
+        setHiddenModal,
+        setCurrentInfor
       );
     } else {
       addInformation(data, endPoint, ownerId, setOpenModalAdd, setHiddenModal);
