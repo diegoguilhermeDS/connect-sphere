@@ -115,6 +115,8 @@ As seguintes ferramentas foram usadas na construção do projeto: ([NextJs](http
 -   **[Nookies](https://www.npmjs.com/package/nookies)**
 -   **[Zod](https://www.npmjs.com/package/zod)**
 
+> Veja o arquivo  [package.json](https://github.com/diegoguilhermeDS/connect-sphere/blob/d870cae961ed37fb0b74d33c4666c5b95fe71330/package.json)
+
 ## 🦸 Autor
 
 <a href="https://github.com/diegoguilhermeDS">
