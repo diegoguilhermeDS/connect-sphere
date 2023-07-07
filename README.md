@@ -125,7 +125,7 @@ As seguintes ferramentas foram usadas na construção do projeto: ([NextJs](http
  <sub><b>Diego Guilherme</b></sub></a> <a href="https://github.com/diegoguilhermeDS" title="Github">🚀</a>
  <br />
 
-[![Linkedin Badge](https://img.shields.io/badge/-Diego-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/diegoguilhermeds/)](https://www.linkedin.com/in/tgmarinho/) 
+[![Linkedin Badge](https://img.shields.io/badge/-Diego-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/diegoguilhermeds/)](https://www.linkedin.com/in/diegoguilhermeds/) 
 [![Gmail Badge](https://img.shields.io/badge/-diegoguilherme752@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:diegoguilherme752@gmail.com)](mailto:diegoguilherme752@gmail.com)
 
 
